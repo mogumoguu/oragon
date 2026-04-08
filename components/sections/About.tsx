@@ -33,7 +33,7 @@ export default function About() {
           }}
         >
           <RevealBox inView={inView} delay={0}>
-            The Founder
+            Who We Are
           </RevealBox>
         </p>
 
@@ -87,7 +87,7 @@ export default function About() {
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "radial-gradient(circle at 30% 30%, rgba(168,85,247,0.10), transparent 70%)",
+                  background: "radial-gradient(circle at 30% 30%, rgba(249,115,22,0.10), transparent 70%)",
                 }}
               />
             </div>
@@ -134,32 +134,31 @@ export default function About() {
               transition={{ duration: 0.6, ease, delay: 0.15 }}
               style={{ color: "var(--text-primary)", margin: 0 }}
             >
-              {/* [REPLACE: Founder-focused headline] */}
-              Building at the intersection of AI and the web.
+              Fierce in solving problems. Humble in how we do it.
             </motion.h2>
 
-            {/* [REPLACE: 2-3 paragraphs about the founder and the company's origin story] */}
             <p style={{ margin: 0, fontSize: "0.95rem" }}>
-              I&apos;m Miguel — the founder behind Orena. I started this company because I
-              saw a clear gap: most businesses want to take advantage of AI and modern technology,
-              but don&apos;t have the in-house expertise to do it well.
+              ORAGON is a Bicolano word — it means fierce, brave, but still humble. That&apos;s
+              exactly who we are. We&apos;re an automation and AI agency founded in the Philippines,
+              built on the belief that technology should serve people, not replace them.
             </p>
 
             <p style={{ margin: 0, fontSize: "0.95rem" }}>
-              With a background in web development, AI tooling, and workflow automation, I built
-              Orena to be the partner businesses need to move faster — without the overhead
-              of a full agency or the risk of hiring the wrong full-time team.
+              We don&apos;t optimize for profit first. We optimize for your team&apos;s freedom —
+              the freedom to focus on the work that actually matters, instead of being buried in
+              manual tasks, broken processes, and tools that don&apos;t talk to each other.
             </p>
 
             <p style={{ margin: 0, fontSize: "0.95rem" }}>
-              Every project is hands-on. I work directly with clients from discovery through
-              delivery, and I don&apos;t stop until the solution actually works.
+              Founded by Miguel Isorena, ORAGON diagnoses the real problems holding businesses
+              back, then builds workflows, automations, and AI-powered systems to solve them.
+              As the Philippines moves toward a more tech-centered world, we&apos;re here to make
+              sure local businesses don&apos;t get left behind.
             </p>
 
             {/* Tags */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginTop: "0.25rem" }}>
-              {/* [REPLACE: relevant expertise areas] */}
-              {["AI Tools", "Web Dev", "Automation", "Consulting"].map((label) => (
+              {["People First", "AI-Powered", "Automation", "Philippines"].map((label) => (
                 <span key={label} className="tag">{label}</span>
               ))}
             </div>

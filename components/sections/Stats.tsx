@@ -6,10 +6,10 @@ import { motion, useInView } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
-  { value: "100%",     label: "Hands-On" },
-  { value: "AI-First", label: "Stack & Workflow" },
-  { value: "1:1",      label: "Founder Access" },
-  { value: "Fast",     label: "Turnaround" },
+  { value: "People",   label: "First, Always" },
+  { value: "AI",       label: "Powered Solutions" },
+  { value: "Problem",  label: "First Thinking" },
+  { value: "PH",       label: "Built for the Philippines" },
 ];
 
 export default function Stats() {

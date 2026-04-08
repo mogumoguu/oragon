@@ -5,34 +5,33 @@ export interface Service {
   icon: "web" | "ai" | "automation" | "consulting";
 }
 
-// [REPLACE: Update with your actual services]
 export const services: Service[] = [
   {
-    id: "web-development",
-    title: "Web Development",
+    id: "workflow-diagnosis",
+    title: "Workflow Diagnosis",
     description:
-      "Custom websites and web applications built with modern frameworks. Fast, accessible, and designed to convert.",
+      "We map your current processes, find where time and money are leaking, and deliver a clear picture of what needs to change — before we touch a single line of code.",
     icon: "web",
   },
   {
-    id: "ai-integration",
-    title: "AI Integration",
+    id: "ai-automation",
+    title: "AI & Automation Build",
     description:
-      "Embed AI capabilities directly into your product or workflow — from chatbots to document processing and beyond.",
+      "We build the systems that do the work — AI-powered workflows, automated pipelines, and smart tools that free your team from repetitive tasks.",
     icon: "ai",
   },
   {
-    id: "automation",
-    title: "Process Automation",
+    id: "systems-integration",
+    title: "Systems & Integration",
     description:
-      "Eliminate repetitive manual work with smart automations connecting your tools, APIs, and data pipelines.",
+      "We connect your existing tools, apps, and data sources so everything works together seamlessly — no more manual transfers or information silos.",
     icon: "automation",
   },
   {
     id: "consulting",
-    title: "Tech Consulting",
+    title: "Strategic Tech Consulting",
     description:
-      "Strategic guidance on technology decisions, AI adoption, and building systems that scale with your business.",
+      "Not sure where to start? We help you cut through the noise, prioritize the right technology decisions, and build a roadmap that makes sense for your business and your people.",
     icon: "consulting",
   },
 ];

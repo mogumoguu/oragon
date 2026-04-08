@@ -88,7 +88,7 @@ export default function Contact() {
       `Project Inquiry${form.service ? ` — ${form.service}` : ""}`
     );
     const body = encodeURIComponent(
-      `Hi Orena,\n\nName: ${form.name}\nEmail: ${form.email}\nService: ${form.service || "Not specified"}\n\n${form.message}`
+      `Hi ORAGON,\n\nName: ${form.name}\nEmail: ${form.email}\nService: ${form.service || "Not specified"}\n\n${form.message}`
     );
     window.open(`mailto:${email}?subject=${subject}&body=${body}`);
   };
@@ -328,7 +328,7 @@ export default function Contact() {
               margin: 0,
             }}
           >
-            © {new Date().getFullYear()} Orena
+            © {new Date().getFullYear()} ORAGON
           </p>
           <p
             style={{

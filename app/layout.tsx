@@ -25,9 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Orena — Your digital stack, handled.",
+  title: "ORAGON — We solve the problems holding you back.",
   description:
-    "Orena is a full-service digital studio specializing in AI automation, web development, and content strategy for businesses ready to move faster.",
+    "ORAGON is a Filipino automation & AI agency. We diagnose inefficiencies and build workflows that free your team to focus on people.",
 };
 
 export default function RootLayout({

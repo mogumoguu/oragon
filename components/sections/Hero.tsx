@@ -11,8 +11,8 @@ const H = {
   textPrimary:   "#eaeaea",
   textSecondary: "#9e9e9e",
   textMuted:     "#606060",
-  accent:        "#7c3aed",
-  border:        "#2a2a38",
+  accent:        "#f97316",
+  border:        "#2a2220",
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -32,7 +32,7 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "radial-gradient(ellipse 90% 70% at 15% 10%, rgba(90, 10, 180, 0.65) 0%, transparent 60%), #04040a",
+        background: "radial-gradient(ellipse 90% 70% at 15% 10%, rgba(160, 50, 5, 0.55) 0%, transparent 60%), #06040a",
       }}
     >
       {/* Particle canvas */}
@@ -78,7 +78,7 @@ export default function Hero() {
             maxWidth: "720px",
           }}
         >
-          We build the things that move your business.
+          We find what's slowing your business down — and fix it.
         </motion.h1>
 
         {/* Accent divider */}
@@ -110,7 +110,7 @@ export default function Hero() {
             fontWeight: 500,
           }}
         >
-          Your digital stack, handled.
+          Automation, AI, and workflows built around your people.
         </motion.p>
 
         {/* Sub-description */}
@@ -127,7 +127,7 @@ export default function Hero() {
             margin: "0 0 2.5rem",
           }}
         >
-          AI automation, web development, and content strategy — built fast, built right.
+          ORAGON is a Filipino agency that diagnoses inefficiencies and builds the systems to solve them — so your team can stop firefighting and start growing.
         </motion.p>
 
         {/* CTAs */}

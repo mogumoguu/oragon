@@ -16,15 +16,9 @@ export const projects: Project[] = [
     tags: ["AI", "Automation", "Twilio", "Dashboard", "Claude API"],
   },
   {
-    id: "coming-soon-1",
-    title: "Coming Soon",
-    description: "New project in progress.",
-    tags: ["AI", "Web"],
-  },
-  {
-    id: "placeholder-1",
-    title: "Coming Soon",
-    description: "New project in progress.",
-    tags: ["AI", "Web"],
+    id: "autoserve",
+    title: "AutoServe",
+    description: "Full-stack car maintenance booking platform. Customers book appointments online; admins manage everything through a protected dashboard with status tracking, filtering, and automated email confirmations via Resend.",
+    tags: ["Next.js", "Supabase", "Automation", "Full-Stack", "Email"],
   },
 ];
