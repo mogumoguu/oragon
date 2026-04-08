@@ -78,7 +78,7 @@ export default function Hero() {
             maxWidth: "720px",
           }}
         >
-          We find what's slowing your business down — and fix it.
+          Your problems. Our solutions.
         </motion.h1>
 
         {/* Accent divider */}
@@ -110,7 +110,7 @@ export default function Hero() {
             fontWeight: 500,
           }}
         >
-          Automation, AI, and workflows built around your people.
+          ORAGON builds the automations that free your team to focus on what matters.
         </motion.p>
 
         {/* Sub-description */}
@@ -127,7 +127,7 @@ export default function Hero() {
             margin: "0 0 2.5rem",
           }}
         >
-          ORAGON is a Filipino agency that diagnoses inefficiencies and builds the systems to solve them — so your team can stop firefighting and start growing.
+          We find the inefficiencies in your business and build the systems to eliminate them — so your people can do the work that actually moves things forward.
         </motion.p>
 
         {/* CTAs */}

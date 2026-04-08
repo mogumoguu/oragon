@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Space_Grotesk, JetBrains_Mono, Russo_One } from "next/font/google";
 import Nav from "@/components/layout/Nav";
 import Cursor from "@/components/ui/Cursor";
 import SmoothScroll from "@/components/providers/SmoothScroll";
@@ -24,6 +24,12 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const russoOne = Russo_One({
+  variable: "--font-russo",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: "ORAGON — We solve the problems holding you back.",
   description:
@@ -38,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${bricolage.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${russoOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

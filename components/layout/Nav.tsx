@@ -45,30 +45,21 @@ export default function Nav() {
         <Link
           href="/"
           className="animate-fade-up"
-          style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.45rem" }}
+          style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.15rem" }}
           onClick={(e) => { e.preventDefault(); handleNavClick("#hero"); }}
         >
-          {/* Flame mark */}
-          <svg width="18" height="22" viewBox="0 0 18 22" fill="none" aria-hidden="true">
-            <path
-              d="M9 1C9 1 14 6 14 10.5C14 13.538 11.761 16 9 16C6.239 16 4 13.538 4 10.5C4 9 4.5 7.5 5 6.5C5 6.5 5.5 9 7 9.5C7 9.5 6 7 9 1Z"
-              fill="var(--accent)"
-              opacity="0.9"
-            />
-            <path
-              d="M9 11C9 11 11 13 11 14.5C11 15.881 10.105 17 9 17C7.895 17 7 15.881 7 14.5C7 13 8 11.5 8 11C8 11 8.5 12.5 9 12.5C9 12.5 8.5 11.5 9 11Z"
-              fill="var(--accent-text)"
-              opacity="0.7"
-            />
-          </svg>
+          {/* Mark */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/oragon-mark.png" alt="" aria-hidden="true" style={{ height: "20px", width: "auto", display: "block", alignSelf: "center" }} />
           <span
             className="font-display text-primary"
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
+              fontFamily: "var(--font-russo)",
+              fontWeight: 400,
               fontSize: "1.1rem",
               color: "var(--text-primary)",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.08em",
+              lineHeight: 1,
             }}
           >
             ORAGON
