@@ -17,22 +17,13 @@ export default function CTA() {
     <section
       style={{
         padding: "7rem 1.5rem",
+        background: "transparent",
         borderTop: "1px solid var(--border-subtle)",
         position: "relative",
         overflow: "hidden",
         textAlign: "center",
       }}
     >
-      {/* Orange glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(249, 115, 22, 0.13) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
 
       <div ref={ref} style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto" }}>
         {/* Label */}

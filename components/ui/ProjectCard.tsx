@@ -28,7 +28,7 @@ export default function ProjectCard({ project, index }: Props) {
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
         boxShadow: hovered
           ? "0 8px 32px var(--accent-glow), 0 0 0 1px var(--accent-glow)"
-          : "0 2px 8px rgba(0,0,0,0.3)",
+          : "0 2px 8px rgba(0,0,0,0.06)",
         opacity: isPlaceholder ? 0.4 : 1,
       }}
     >
@@ -66,22 +66,34 @@ export default function ProjectCard({ project, index }: Props) {
           </div>
         )}
 
-        {/* Index badge */}
-        <span
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "12px",
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.65rem",
-            fontWeight: 500,
-            letterSpacing: "0.1em",
-            color: "var(--accent-text)",
-            opacity: 0.7,
-          }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
+        {/* Status badge */}
+        {"status" in project && (
+          <span
+            style={{
+              position: "absolute",
+              top: "10px",
+              left: "12px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.62rem",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              padding: "0.2rem 0.55rem",
+              borderRadius: "3px",
+              background: (project as { status: string }).status === "live"
+                ? "rgba(22, 163, 74, 0.12)"
+                : "rgba(251, 146, 60, 0.10)",
+              color: (project as { status: string }).status === "live"
+                ? "#166534"
+                : "var(--accent-text)",
+              border: (project as { status: string }).status === "live"
+                ? "1px solid rgba(22, 163, 74, 0.25)"
+                : "1px solid var(--accent-glow-strong)",
+            }}
+          >
+            {(project as { status: string }).status === "live" ? "Live" : "In Progress"}
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -94,7 +106,7 @@ export default function ProjectCard({ project, index }: Props) {
           flex: 1,
         }}
       >
-        {/* Mono label */}
+        {/* Project number */}
         <p
           style={{
             fontFamily: "var(--font-mono)",
@@ -106,7 +118,7 @@ export default function ProjectCard({ project, index }: Props) {
             margin: 0,
           }}
         >
-          Mono, {index + 1}
+          Project — {String(index + 1).padStart(2, "0")}
         </p>
 
         {/* Title */}

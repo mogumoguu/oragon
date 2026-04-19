@@ -6,10 +6,10 @@ import { motion, useInView } from "framer-motion";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
-  { value: "People",   label: "First, Always" },
-  { value: "AI",       label: "Powered Solutions" },
-  { value: "Problem",  label: "First Thinking" },
-  { value: "PH",       label: "Built for the Philippines" },
+  { value: "3",     label: "Products Shipped" },
+  { value: "2",     label: "Founders" },
+  { value: "100%",  label: "Remote-Friendly" },
+  { value: "PH",    label: "Built in the Philippines" },
 ];
 
 export default function Stats() {
@@ -19,7 +19,7 @@ export default function Stats() {
   return (
     <section
       style={{
-        background: "rgba(13, 13, 18, 0.12)",
+        background: "var(--bg-surface)",
         borderTop: "1px solid var(--border-subtle)",
         borderBottom: "1px solid var(--border-subtle)",
         padding: "2.5rem 1.5rem",

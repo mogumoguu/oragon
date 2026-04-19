@@ -2,28 +2,28 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
 
-/* Deep black + orange accent — ORAGON brand */
+/* White + orange accent — ORAGON brand */
 :root {
-  --bg-base:     #09080a;
-  --bg-surface:  #0e0d0f;
-  --bg-elevated: #141214;
+  --bg-base:     #ffffff;
+  --bg-surface:  #f8f7f5;
+  --bg-elevated: #f1eeeb;
 
-  --border:        #221e20;
-  --border-subtle: #1a1618;
+  --border:        #e5e0db;
+  --border-subtle: #ede9e3;
 
-  --text-primary:   #eaeaea;
-  --text-secondary: #9e9e9e;
-  --text-muted:     #606060;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted:     #9a8f87;
 
-  --accent:             #f97316;
-  --accent-dim:         #ea6c1a;
-  --accent-glow:        rgba(249, 115, 22, 0.12);
-  --accent-glow-strong: rgba(249, 115, 22, 0.28);
-  --accent-text:        #fdba74;
+  --accent:             #fb923c;
+  --accent-dim:         #f97316;
+  --accent-glow:        rgba(251, 146, 60, 0.12);
+  --accent-glow-strong: rgba(251, 146, 60, 0.24);
+  --accent-text:        #ea580c;
 
-  --nav-bg-scrolled: rgba(9, 8, 10, 0.94);
-  --nav-bg-top:      rgba(9, 8, 10, 0.50);
-  --nav-mobile-bg:   rgba(9, 8, 10, 0.98);
+  --nav-bg-scrolled: rgba(20, 16, 14, 0.97);
+  --nav-bg-top:      rgba(20, 16, 14, 0.88);
+  --nav-mobile-bg:   #1e1a18;
 
   --font-display: var(--font-bricolage);
   --font-body:    var(--font-space-grotesk);
@@ -36,6 +36,25 @@
   --color-foreground: var(--text-primary);
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);
+  --animate-aurora: aurora 60s linear infinite;
+}
+
+/* ─── Aurora color aliases (used by aurora-background.tsx) ─── */
+:root {
+  --white:       #ffffff;
+  --black:       #000000;
+  --transparent: transparent;
+  --blue-300:    #93c5fd;
+  --blue-400:    #60a5fa;
+  --blue-500:    #3b82f6;
+  --indigo-300:  #a5b4fc;
+  --violet-200:  #ddd6fe;
+}
+
+/* ─── Aurora keyframes ──────────────────────────────────────── */
+@keyframes aurora {
+  from { background-position: 50% 50%, 50% 50%; }
+  to   { background-position: 350% 50%, 350% 50%; }
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -45,7 +64,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #060405;
+  background-color: #ffffff;
 }
 
 body {
@@ -61,11 +80,6 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(180, 60, 10, 0.55) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(130, 40, 5, 0.28) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 60% 50%, rgba(200, 80, 10, 0.22) 0%, transparent 70%);
-  animation: gradient-drift 28s ease-in-out infinite alternate;
 }
 
 /* ─── Typography Scale ──────────────────────────────────────── */
@@ -176,22 +190,10 @@ p {
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-track { background: var(--bg-elevated); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* ─── Purple accent glows — alternating sides per section ───── */
-#services, #about, #contact {
-  background-image: radial-gradient(ellipse 70% 50% at 100% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 65%);
-}
-
-#skills, #process, #testimonials {
-  background-image: radial-gradient(ellipse 70% 50% at 0% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 65%);
-}
-
-#projects {
-  background-image: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(249, 115, 22, 0.13) 0%, transparent 60%);
-}
 
 /* ─── Grain overlay ─────────────────────────────────────────── */
 body::after {
@@ -200,13 +202,13 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.035;
+  opacity: 0.020;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
 
 /* ─── Selection ─────────────────────────────────────────────── */
 ::selection {
-  background: var(--accent-glow-strong);
+  background: rgba(251, 146, 60, 0.18);
   color: var(--text-primary);
 }

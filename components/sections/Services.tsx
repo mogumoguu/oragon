@@ -47,7 +47,7 @@ export default function Services() {
       id="services"
       style={{
         padding: "6rem 1.5rem",
-        background: "rgba(13, 13, 18, 0.12)",
+        background: "transparent",
         borderTop: "1px solid var(--border-subtle)",
       }}
     >

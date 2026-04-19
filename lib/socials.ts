@@ -9,7 +9,7 @@ export const socials: Social[] = [
   { name: "Instagram", url: "https://instagram.com/migsiso",  handle: "@migsiso" },
   { name: "TikTok",    url: "https://tiktok.com/@migsiso",    handle: "@migsiso" },
   { name: "GitHub",    url: "https://github.com/migsiso",     handle: "migsiso" },
-  { name: "LinkedIn",  url: "https://linkedin.com/in/migsiso", handle: "migsiso" },
+  { name: "LinkedIn",  url: "https://linkedin.com/company/oragon", handle: "oragon" },
 ];
 
-export const email = "miguelisorena@gmail.com";
+export const email = "support@oragon.com.ph";

@@ -98,7 +98,7 @@ export default function Contact() {
       id="contact"
       style={{
         padding: "6rem 1.5rem 4rem",
-        background: "rgba(13, 13, 18, 0.12)",
+        background: "var(--bg-surface)",
         borderTop: "1px solid var(--border-subtle)",
       }}
     >

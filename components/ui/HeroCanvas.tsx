@@ -65,7 +65,7 @@ export default function HeroCanvas() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(249, 115, 22, ${alpha})`;
+            ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -76,7 +76,7 @@ export default function HeroCanvas() {
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(249, 115, 22, 0.55)";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.20)";
         ctx.fill();
       }
 

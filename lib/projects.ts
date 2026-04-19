@@ -3,22 +3,26 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  image?: string;
+  status: "live" | "in-progress";
   liveUrl?: string;
   repoUrl?: string;
 };
 
 export const projects: Project[] = [
   {
-    id: "ai-reminder-app",
-    title: "AI-Powered Reminder System",
-    description: "Full-stack automated reminder platform with a web dashboard for managing tasks, AI-generated personalized messages, and automated delivery via SMS and WhatsApp. Deployed to real users, gathered feedback, and iterated on the UX based on their input.",
-    tags: ["AI", "Automation", "Twilio", "Dashboard", "Claude API"],
+    id: "smart-stock",
+    title: "Smart Stock",
+    description:
+      "Full-stack inventory and POS management system built for Filipino small businesses. Features real-time stock tracking, sales reporting, AI-powered restock forecasting, and a multi-tenant dashboard. Live with real users.",
+    tags: ["Next.js", "Supabase", "AI Forecasting", "POS", "Dashboard"],
+    status: "live",
   },
   {
     id: "autoserve",
     title: "AutoServe",
-    description: "Full-stack car maintenance booking platform. Customers book appointments online; admins manage everything through a protected dashboard with status tracking, filtering, and automated email confirmations via Resend.",
-    tags: ["Next.js", "Supabase", "Automation", "Full-Stack", "Email"],
+    description:
+      "Car maintenance booking platform that lets customers schedule appointments online while shop owners manage everything through a protected admin dashboard — status tracking, filtering, and automated email confirmations.",
+    tags: ["Next.js", "Supabase", "Automation", "Full-Stack", "Resend"],
+    status: "in-progress",
   },
 ];

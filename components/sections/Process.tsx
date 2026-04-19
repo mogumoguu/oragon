@@ -38,7 +38,7 @@ export default function Process() {
       id="process"
       style={{
         padding: "6rem 1.5rem",
-        background: "rgba(8, 8, 12, 0.08)",
+        background: "var(--bg-surface)",
         borderTop: "1px solid var(--border-subtle)",
       }}
     >

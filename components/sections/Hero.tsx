@@ -1,18 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-
-const HeroCanvas = dynamic(() => import("@/components/ui/HeroCanvas"), {
-  ssr: false,
-});
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const H = {
-  textPrimary:   "#eaeaea",
-  textSecondary: "#9e9e9e",
-  textMuted:     "#606060",
-  accent:        "#f97316",
-  border:        "#2a2220",
+  textPrimary:   "var(--text-primary)",
+  textSecondary: "var(--text-secondary)",
+  accent:        "#fb923c",
+  border:        "var(--border)",
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -23,46 +18,26 @@ export default function Hero() {
   };
 
   return (
-    <section
+    <AuroraBackground
       id="hero"
-      style={{
-        minHeight: "100vh",
-        position: "relative",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "radial-gradient(ellipse 90% 70% at 15% 10%, rgba(160, 50, 5, 0.55) 0%, transparent 60%), #06040a",
-      }}
+      className="justify-center items-center"
+      style={{ minHeight: "100vh" }}
     >
-      {/* Particle canvas */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        <HeroCanvas />
-      </div>
-
-      {/* Overlay */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "rgba(4, 4, 8, 0.55)",
-          zIndex: 1,
-        }}
-      />
-
       {/* Content */}
       <div
         style={{
           position: "relative",
-          zIndex: 2,
-          maxWidth: "1200px",
+          zIndex: 10,
+          maxWidth: "900px",
           width: "100%",
           padding: "0 1.5rem",
-          textAlign: "left",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        {/* Value statement */}
+        {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -74,26 +49,46 @@ export default function Hero() {
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
             color: H.textPrimary,
-            marginBottom: "1.25rem",
-            maxWidth: "720px",
+            marginBottom: "0.75rem",
           }}
         >
-          Your problems. Our solutions.
+          Your problems{" "}
+          <br />
+          Our solutions
         </motion.h1>
 
-        {/* Accent divider */}
+        {/* Glow line */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5, ease, delay: 0.4 }}
-          style={{
-            width: "48px",
-            height: "2px",
-            background: H.accent,
-            margin: "0 0 1.5rem",
-            transformOrigin: "left center",
-          }}
-        />
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease, delay: 0.35 }}
+          style={{ position: "relative", width: "100%", height: "40px", marginBottom: "0.75rem" }}
+        >
+          {/* Wide blur */}
+          <div style={{
+            position: "absolute", top: 0, left: "12.5%", right: "12.5%",
+            height: "2px", filter: "blur(3px)",
+            background: "linear-gradient(to right, transparent, #fb923c, transparent)",
+          }} />
+          {/* Sharp line */}
+          <div style={{
+            position: "absolute", top: 0, left: "12.5%", right: "12.5%",
+            height: "1px",
+            background: "linear-gradient(to right, transparent, #fb923c, transparent)",
+          }} />
+          {/* Center bright point blur */}
+          <div style={{
+            position: "absolute", top: 0, left: "37.5%", right: "37.5%",
+            height: "5px", filter: "blur(4px)",
+            background: "linear-gradient(to right, transparent, #fb923c, transparent)",
+          }} />
+          {/* Center bright point sharp */}
+          <div style={{
+            position: "absolute", top: 0, left: "37.5%", right: "37.5%",
+            height: "1px",
+            background: "linear-gradient(to right, transparent, #fb923c, transparent)",
+          }} />
+        </motion.div>
 
         {/* Tagline */}
         <motion.p
@@ -105,7 +100,7 @@ export default function Hero() {
             fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
             lineHeight: 1.65,
             color: H.textPrimary,
-            maxWidth: "480px",
+            maxWidth: "520px",
             margin: "0 0 0.75rem",
             fontWeight: 500,
           }}
@@ -123,7 +118,7 @@ export default function Hero() {
             fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
             lineHeight: 1.65,
             color: H.textSecondary,
-            maxWidth: "480px",
+            maxWidth: "520px",
             margin: "0 0 2.5rem",
           }}
         >
@@ -135,7 +130,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease, delay: 0.55 }}
-          style={{ display: "flex", gap: "1rem", justifyContent: "flex-start", flexWrap: "wrap" }}
+          style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
         >
           <button
             onClick={() => scrollTo("services")}
@@ -173,7 +168,6 @@ export default function Hero() {
           </button>
         </motion.div>
       </div>
-
-    </section>
+    </AuroraBackground>
   );
 }
