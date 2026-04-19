@@ -4,6 +4,7 @@ export type Project = {
   description: string;
   tags: string[];
   status: "live" | "in-progress";
+  image?: string;
   liveUrl?: string;
   repoUrl?: string;
 };
