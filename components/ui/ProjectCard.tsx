@@ -163,12 +163,12 @@ export default function ProjectCard({ project, index }: Props) {
           <div style={{ marginTop: "0.4rem" }}>
             <a
               href={project.liveUrl ?? project.repoUrl ?? "#"}
-              target={project.liveUrl === "/" ? "_self" : "_blank"}
+              target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
               style={{ fontSize: "0.7rem" }}
             >
-              View Case Study
+              {project.liveUrl ? "Launch App" : "View Project"}
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>

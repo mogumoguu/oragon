@@ -5,11 +5,9 @@ export type Social = {
 };
 
 export const socials: Social[] = [
-  { name: "YouTube",   url: "https://youtube.com/@migsiso",   handle: "@migsiso" },
-  { name: "Instagram", url: "https://instagram.com/migsiso",  handle: "@migsiso" },
-  { name: "TikTok",    url: "https://tiktok.com/@migsiso",    handle: "@migsiso" },
-  { name: "GitHub",    url: "https://github.com/migsiso",     handle: "migsiso" },
-  { name: "LinkedIn",  url: "https://linkedin.com/company/oragon", handle: "oragon" },
+  { name: "Facebook",  url: "https://www.facebook.com/profile.php?id=61570723894734", handle: "Oragon" },
+  { name: "Instagram", url: "https://instagram.com/oragonph",      handle: "@oragonph" },
+  { name: "TikTok",    url: "https://tiktok.com/@oragontechph",    handle: "@oragontechph" },
 ];
 
 export const email = "support@oragon.com.ph";

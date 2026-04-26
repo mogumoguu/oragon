@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const H = {
@@ -142,8 +143,8 @@ export default function Hero() {
               <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <button
-            onClick={() => scrollTo("contact")}
+          <Link
+            href="/contact"
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "0.85rem",
@@ -154,6 +155,9 @@ export default function Hero() {
               color: H.textSecondary,
               cursor: "pointer",
               transition: "border-color 0.2s, color 0.2s",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = H.accent;
@@ -165,7 +169,7 @@ export default function Hero() {
             }}
           >
             Get In Touch
-          </button>
+          </Link>
         </motion.div>
       </div>
     </AuroraBackground>

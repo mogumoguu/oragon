@@ -9,14 +9,14 @@ const links = [
   { label: "Work",      href: "/projects" },
   { label: "About",     href: "/about" },
   { label: "Investors", href: "/investors" },
-  { label: "Contact",   href: "/#contact" },
+  { label: "Contact",   href: "/contact" },
 ];
 
 function NavCTA({ onClick, scrolled }: { onClick?: () => void; scrolled: boolean }) {
   const [hovered, setHovered] = useState(false);
   return (
     <Link
-      href="/#contact"
+      href="/contact"
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

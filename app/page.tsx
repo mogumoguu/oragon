@@ -1,7 +1,8 @@
 import Hero     from "@/components/sections/Hero";
 import Stats    from "@/components/sections/Stats";
-import Services from "@/components/sections/Services";
-import Process  from "@/components/sections/Process";
+import Services    from "@/components/sections/Services";
+import WhoWeServe  from "@/components/sections/WhoWeServe";
+import Process     from "@/components/sections/Process";
 import CTA      from "@/components/sections/CTA";
 import Contact  from "@/components/sections/Contact";
 
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <Services />
+      <WhoWeServe />
       <Process />
       <CTA />
       <Contact />

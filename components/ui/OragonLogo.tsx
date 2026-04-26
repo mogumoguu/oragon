@@ -15,27 +15,7 @@ export default function OragonLogo({ size = 32, showWordmark = true, variant = "
   const textColor = variant === "light" ? "var(--text-primary)" : "#ffffff";
 
   return (
-    <span
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: size * 0.3,
-        userSelect: "none",
-      }}
-    >
-      {/* O monogram — shifted slightly left and down within frame */}
-      <svg
-        width={height}
-        height={height}
-        viewBox="0 0 30 29"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        style={{ display: "block" }}
-      >
-        <circle cx="13" cy="15" r="11" stroke={markColor} strokeWidth="2.3" />
-      </svg>
-
+    <span style={{ display: "inline-flex", alignItems: "center", userSelect: "none" }}>
       {showWordmark && (
         <span
           style={{
@@ -45,7 +25,6 @@ export default function OragonLogo({ size = 32, showWordmark = true, variant = "
             letterSpacing: "0.06em",
             color: textColor,
             lineHeight: 1,
-            transform: "translate(-6px, 1.5px)",
           }}
         >
           ORAGON

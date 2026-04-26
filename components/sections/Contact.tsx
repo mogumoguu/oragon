@@ -42,6 +42,11 @@ const labelStyle: React.CSSProperties = {
 
 const SocialIcon = ({ name }: { name: string }) => {
   const icons: Record<string, React.ReactElement> = {
+    Facebook: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    ),
     YouTube: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -75,22 +80,27 @@ export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    service: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `Project Inquiry${form.service ? ` — ${form.service}` : ""}`
-    );
-    const body = encodeURIComponent(
-      `Hi ORAGON,\n\nName: ${form.name}\nEmail: ${form.email}\nService: ${form.service || "Not specified"}\n\n${form.message}`
-    );
-    window.open(`mailto:${email}?subject=${subject}&body=${body}`);
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+      setStatus("success");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -138,88 +148,132 @@ export default function Contact() {
             alignItems: "start",
           }}
         >
-          {/* Left — contact form */}
-          <motion.form
-            onSubmit={handleSubmit}
+          {/* Left — contact form / success */}
+          <motion.div
             initial={{ opacity: 0, y: 48, scale: 0.96 }}
             animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.6, ease, delay: 0.15 }}
-            style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}
           >
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-              <div>
-                <label style={labelStyle} htmlFor="contact-name">Name</label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  required
-                  placeholder="Your name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  style={inputStyle}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-                />
+            {status === "success" ? (
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                <div
+                  style={{
+                    width: "48px", height: "48px", borderRadius: "50%",
+                    background: "var(--accent-glow)", border: "1px solid var(--border)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--accent-text)",
+                  }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.3rem", color: "var(--text-primary)", margin: "0 0 0.5rem", letterSpacing: "-0.02em" }}>
+                    Message sent.
+                  </h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", margin: 0, lineHeight: 1.65 }}>
+                    We&apos;ll be in touch within 24 hours. In the meantime, feel free to book a discovery call directly.
+                  </p>
+                </div>
+                <a
+                  href="https://calendar.app.google/cPnmc1jhWAbX22eh9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{ alignSelf: "flex-start", fontSize: "0.85rem", padding: "0.75rem 1.75rem", textDecoration: "none" }}
+                >
+                  Book a Discovery Call
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
               </div>
-              <div>
-                <label style={labelStyle} htmlFor="contact-email">Email</label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  style={inputStyle}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-                />
-              </div>
-            </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={labelStyle} htmlFor="contact-name">Name</label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      placeholder="Your name"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      style={inputStyle}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle} htmlFor="contact-email">Email</label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      style={inputStyle}
+                      onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <label style={labelStyle} htmlFor="contact-service">Service</label>
-              <select
-                id="contact-service"
-                value={form.service}
-                onChange={(e) => setForm({ ...form, service: e.target.value })}
-                style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
-                onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-                onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-              >
-                <option value="">Select a service…</option>
-                {serviceOptions.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
+                <div>
+                  <label style={labelStyle} htmlFor="contact-service">Service</label>
+                  <select
+                    id="contact-service"
+                    value={form.service}
+                    onChange={(e) => setForm({ ...form, service: e.target.value })}
+                    style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                  >
+                    <option value="">Select a service…</option>
+                    {serviceOptions.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                </div>
 
-            <div>
-              <label style={labelStyle} htmlFor="contact-message">Message</label>
-              <textarea
-                id="contact-message"
-                required
-                rows={5}
-                placeholder="Tell us about your project…"
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
-                onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-                onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-              />
-            </div>
+                <div>
+                  <label style={labelStyle} htmlFor="contact-message">Message</label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    rows={5}
+                    placeholder="Tell us about your project…"
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                  />
+                </div>
 
-            <button
-              type="submit"
-              className="btn-primary"
-              style={{ alignSelf: "flex-start", fontSize: "0.85rem", padding: "0.75rem 1.75rem" }}
-            >
-              Send Message
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </motion.form>
+                {status === "error" && (
+                  <p style={{ fontSize: "0.82rem", color: "#dc2626", margin: 0 }}>{errorMsg}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="btn-primary"
+                  style={{ alignSelf: "flex-start", fontSize: "0.85rem", padding: "0.75rem 1.75rem", opacity: status === "loading" ? 0.7 : 1, cursor: status === "loading" ? "not-allowed" : "pointer" }}
+                >
+                  {status === "loading" ? "Sending…" : "Send Message"}
+                  {status !== "loading" && (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </button>
+              </form>
+            )}
+          </motion.div>
 
           {/* Right — email + socials */}
           <motion.div

@@ -41,6 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 # design artifacts
-*.png
 color-picker.html
-screenshot.png
+
+# ignore loose PNGs in root but allow public assets
+*.png
+!public/*.png
