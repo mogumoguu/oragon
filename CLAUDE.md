@@ -2,7 +2,7 @@
 
 # ORAGON Website
 
-Agency site for ORAGON — a Filipino automation & AI agency founded by Miguel Isorena (CEO) and Dennis Isorena (Co-Founder).
+Agency site for ORAGON, a Filipino automation & AI agency built solo by Miguel Isorena (Founder).
 
 ## Stack
 - **Next.js 16.2.2** — App Router, React 19
@@ -17,7 +17,7 @@ Agency site for ORAGON — a Filipino automation & AI agency founded by Miguel I
 | `/` | `app/page.tsx` |
 | `/about` | `app/about/page.tsx` |
 | `/projects` | `app/projects/page.tsx` |
-| `/investors` | `app/investors/page.tsx` |
+| `/vision` | `app/vision/page.tsx` |
 
 ## Theme & Design Tokens (`app/globals.css`)
 Light theme, white base, pastel orange accent.
@@ -36,8 +36,9 @@ Color aliases (`--blue-500`, `--indigo-300`, etc.) for the aurora component are 
 `html` background is plain `#ffffff` — no dot grid, no gradients.
 
 ## Page Structure (`app/page.tsx`)
-Home page renders: `Hero → Stats → Services → Process → CTA → Contact`
-About and Projects sections were removed from the home page — they are standalone routes.
+Home page renders: `Hero → Proof → Services → BookingSection → FounderNote → Contact`
+(Rebuilt 2026-05-18 per `MI OS/02-build/plans/2026-05-18-oragon-site-rebuild-spec.md`.)
+About, Projects, and Vision pages remain as standalone routes.
 
 ## Key Components
 
@@ -53,13 +54,16 @@ About and Projects sections were removed from the home page — they are standal
 - `components/ui/RevealBox.tsx` — Scroll-triggered reveal animation wrapper.
 - `components/ui/HeroCanvas.tsx` — Legacy particle canvas. No longer used in Hero (replaced by aurora).
 
-### Sections
-- `Hero.tsx` — Uses `<AuroraBackground>` as wrapper. Has h1, orange accent divider, tagline, two CTA buttons.
-- `Stats.tsx` — `bg-surface` cream background. Stats: 3 products, 2 founders, 100% remote, PH HQ.
-- `Services.tsx` — Transparent background. Service cards from `lib/services.ts`.
-- `Process.tsx` — `bg-surface` cream background.
-- `CTA.tsx` — Transparent background. No orange glow (removed).
-- `Contact.tsx` — `bg-surface` cream background.
+### Sections (current homepage)
+- `Hero.tsx` — Uses `<AuroraBackground>` as wrapper. Headline "I build AI automation that actually ships." Single CTA: "Book a call" scrolling to booking section.
+- `Proof.tsx` — Single line: "Already built: SmartStock (live) · Oragon Bookings (live)".
+- `Services.tsx` — Transparent background. Three cards from `lib/services.ts`: POS+Sales, Bookings, Custom Workflows.
+- `BookingSection.tsx` — Cal.com inline embed for 30-min discovery call. Fallback link: support@oragon.com.ph.
+- `FounderNote.tsx` — Founder note from Miguel.
+- `Contact.tsx` — `bg-surface` cream background. Demoted to fallback path.
+
+### Sections (dead code — kept in repo but not imported)
+- `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Testimonials.tsx`, `Skills.tsx`, `Projects.tsx`
 
 ## Data (`lib/`)
 - `lib/projects.ts` — Smart Stock (live), AutoServe (in-progress). Type includes `status: "live" | "in-progress"`.
@@ -73,7 +77,6 @@ About and Projects sections were removed from the home page — they are standal
 - `@import "tailwindcss"` at top of `globals.css` replaces the PostCSS plugin setup
 
 ## Content
-- **Miguel Isorena** — Founder & CEO. Leads product and engineering.
-- **Dennis Isorena** — Co-Founder. Leads business strategy and financial operations.
-- Brand tagline: *"Your problems. Our solutions."*
+- **Miguel Isorena** — Founder. Solo operator. Builds everything personally.
+- Brand positioning (2026-05-18): "I build AI automation that actually ships."
 - Support email: `support@oragon.com.ph`

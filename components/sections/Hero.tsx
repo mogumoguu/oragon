@@ -1,14 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const H = {
   textPrimary:   "var(--text-primary)",
   textSecondary: "var(--text-secondary)",
-  accent:        "#fb923c",
-  border:        "var(--border)",
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -24,7 +21,6 @@ export default function Hero() {
       className="justify-center items-center"
       style={{ minHeight: "100vh" }}
     >
-      {/* Content */}
       <div
         style={{
           position: "relative",
@@ -38,7 +34,7 @@ export default function Hero() {
           alignItems: "center",
         }}
       >
-        {/* Heading */}
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -46,16 +42,15 @@ export default function Hero() {
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 800,
-            fontSize: "clamp(3rem, 7vw, 6rem)",
+            fontSize: "clamp(2.5rem, 6.5vw, 5.5rem)",
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
             color: H.textPrimary,
             marginBottom: "0.75rem",
           }}
         >
-          Your problems{" "}
-          <br />
-          Our solutions
+          We build AI automation that{" "}
+          <span style={{ color: "var(--accent)" }}>actually ships.</span>
         </motion.h1>
 
         {/* Glow line */}
@@ -65,25 +60,21 @@ export default function Hero() {
           transition={{ duration: 0.8, ease, delay: 0.35 }}
           style={{ position: "relative", width: "100%", height: "40px", marginBottom: "0.75rem" }}
         >
-          {/* Wide blur */}
           <div style={{
             position: "absolute", top: 0, left: "12.5%", right: "12.5%",
             height: "2px", filter: "blur(3px)",
             background: "linear-gradient(to right, transparent, #fb923c, transparent)",
           }} />
-          {/* Sharp line */}
           <div style={{
             position: "absolute", top: 0, left: "12.5%", right: "12.5%",
             height: "1px",
             background: "linear-gradient(to right, transparent, #fb923c, transparent)",
           }} />
-          {/* Center bright point blur */}
           <div style={{
             position: "absolute", top: 0, left: "37.5%", right: "37.5%",
             height: "5px", filter: "blur(4px)",
             background: "linear-gradient(to right, transparent, #fb923c, transparent)",
           }} />
-          {/* Center bright point sharp */}
           <div style={{
             position: "absolute", top: 0, left: "37.5%", right: "37.5%",
             height: "1px",
@@ -91,7 +82,7 @@ export default function Hero() {
           }} />
         </motion.div>
 
-        {/* Tagline */}
+        {/* Subhead */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,75 +92,30 @@ export default function Hero() {
             fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
             lineHeight: 1.65,
             color: H.textPrimary,
-            maxWidth: "520px",
-            margin: "0 0 0.75rem",
+            maxWidth: "620px",
+            margin: "0 0 2.5rem",
             fontWeight: 500,
           }}
         >
-          ORAGON builds the automations that free your team to focus on what matters.
+          Custom AI tools and automated workflows for Filipino SMEs. Book a 30-min discovery call to see if we&apos;re a fit.
         </motion.p>
 
-        {/* Sub-description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.5 }}
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
-            lineHeight: 1.65,
-            color: H.textSecondary,
-            maxWidth: "520px",
-            margin: "0 0 2.5rem",
-          }}
-        >
-          We find the inefficiencies in your business and build the systems to eliminate them — so your people can do the work that actually moves things forward.
-        </motion.p>
-
-        {/* CTAs */}
+        {/* Single CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease, delay: 0.55 }}
-          style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
         >
           <button
-            onClick={() => scrollTo("services")}
+            onClick={() => scrollTo("booking")}
             className="btn-primary"
-            style={{ fontSize: "0.85rem", padding: "0.75rem 1.75rem" }}
+            style={{ fontSize: "0.95rem", padding: "0.85rem 2rem" }}
           >
-            Our Services
+            Book a call
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <Link
-            href="/contact"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.85rem",
-              padding: "0.75rem 1.75rem",
-              background: "transparent",
-              border: `1px solid ${H.border}`,
-              borderRadius: "4px",
-              color: H.textSecondary,
-              cursor: "pointer",
-              transition: "border-color 0.2s, color 0.2s",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = H.accent;
-              e.currentTarget.style.color = H.textPrimary;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = H.border;
-              e.currentTarget.style.color = H.textSecondary;
-            }}
-          >
-            Get In Touch
-          </Link>
         </motion.div>
       </div>
     </AuroraBackground>

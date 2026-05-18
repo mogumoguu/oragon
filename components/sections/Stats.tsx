@@ -7,7 +7,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
   { value: "3",     label: "Products Shipped" },
-  { value: "2",     label: "Founders" },
+  { value: "1",     label: "Solo Founder" },
   { value: "100%",  label: "Remote-Friendly" },
   { value: "PH",    label: "Built in the Philippines" },
 ];

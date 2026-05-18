@@ -9,62 +9,14 @@ import { projects } from "@/lib/projects";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ProjectsPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const ctaRef  = useRef<HTMLDivElement>(null);
 
-  const heroInView = useInView(heroRef, { once: true, margin: "-60px" });
   const gridInView = useInView(gridRef, { once: true, margin: "-60px" });
   const ctaInView  = useInView(ctaRef,  { once: true, margin: "-60px" });
 
   return (
     <main style={{ paddingTop: "4rem" }}>
-
-      {/* ── Hero ── */}
-      <section
-        ref={heroRef}
-        style={{
-          padding: "6rem 1.5rem 5rem",
-          borderBottom: "1px solid var(--border-subtle)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0 }}
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              fontWeight: 500,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--accent-text)",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Our Work
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.1 }}
-            style={{ color: "var(--text-primary)", margin: "0 0 1.5rem" }}
-          >
-            Products we&apos;ve shipped.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.2 }}
-            style={{ fontSize: "1.05rem", maxWidth: "560px", margin: 0 }}
-          >
-            We build real software for real problems. Here&apos;s what we&apos;ve shipped so far.
-          </motion.p>
-        </div>
-      </section>
 
       {/* ── Project Grid ── */}
       <section

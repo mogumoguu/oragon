@@ -1,21 +1,17 @@
-import Hero     from "@/components/sections/Hero";
-import Stats    from "@/components/sections/Stats";
-import Services    from "@/components/sections/Services";
-import WhoWeServe  from "@/components/sections/WhoWeServe";
-import Process     from "@/components/sections/Process";
-import CTA      from "@/components/sections/CTA";
-import Contact  from "@/components/sections/Contact";
+import Hero           from "@/components/sections/Hero";
+import Proof          from "@/components/sections/Proof";
+import Services       from "@/components/sections/Services";
+import BookingSection from "@/components/sections/BookingSection";
+import FounderNote    from "@/components/sections/FounderNote";
 
 export default function Home() {
   return (
     <main style={{ paddingTop: "4rem", padding: "4rem 0 2rem" }}>
       <Hero />
-      <Stats />
+      <Proof />
       <Services />
-      <WhoWeServe />
-      <Process />
-      <CTA />
-      <Contact />
+      <BookingSection />
+      <FounderNote />
       <style>{`
         @media (max-width: 640px) {
           main {

@@ -62,7 +62,7 @@ export default function Skills() {
             transition={{ duration: 0.6, ease, delay: 0.1 }}
             style={{ color: "var(--text-primary)", margin: 0 }}
           >
-            What I Work With
+            What We Work With
           </motion.h2>
         </div>
 

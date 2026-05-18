@@ -17,9 +17,9 @@ const tractionItems = [
     note: "Retail / inventory management and automotive services",
   },
   {
-    value: "2",
-    label: "Founders",
-    note: "Technical and business leadership in-house from day one",
+    value: "Custom",
+    label: "Builds",
+    note: "Each project scoped, shipped, and supported by Miguel personally",
   },
   {
     value: "PH",
@@ -28,14 +28,12 @@ const tractionItems = [
   },
 ];
 
-export default function InvestorsPage() {
-  const heroRef    = useRef<HTMLDivElement>(null);
+export default function VisionPage() {
   const overviewRef = useRef<HTMLDivElement>(null);
   const tractionRef = useRef<HTMLDivElement>(null);
   const visionRef  = useRef<HTMLDivElement>(null);
   const ctaRef     = useRef<HTMLDivElement>(null);
 
-  const heroInView     = useInView(heroRef,     { once: true, margin: "-60px" });
   const overviewInView = useInView(overviewRef, { once: true, margin: "-60px" });
   const tractionInView = useInView(tractionRef, { once: true, margin: "-60px" });
   const visionInView   = useInView(visionRef,   { once: true, margin: "-60px" });
@@ -43,55 +41,6 @@ export default function InvestorsPage() {
 
   return (
     <main style={{ paddingTop: "4rem" }}>
-
-      {/* ── Hero ── */}
-      <section
-        ref={heroRef}
-        style={{
-          padding: "6rem 1.5rem 5rem",
-          borderBottom: "1px solid var(--border-subtle)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0 }}
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              fontWeight: 500,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--accent-text)",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Investor Relations
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.1 }}
-            style={{ color: "var(--text-primary)", margin: "0 0 1.5rem" }}
-          >
-            Built for the{" "}
-            <span style={{ color: "var(--accent)" }}>long game.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.2 }}
-            style={{ fontSize: "1.05rem", maxWidth: "600px", margin: 0 }}
-          >
-            ORAGON is an automation and AI agency building real products for Filipino
-            businesses. We&apos;re early, focused, and playing to win in a market that is
-            just beginning to digitize.
-          </motion.p>
-        </div>
-      </section>
 
       {/* ── Overview ── */}
       <section
@@ -102,7 +51,7 @@ export default function InvestorsPage() {
           borderBottom: "1px solid var(--border-subtle)",
         }}
       >
-        <div className="max-w-4xl mx-auto investors-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
+        <div className="max-w-4xl mx-auto vision-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
           <div>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -126,8 +75,8 @@ export default function InvestorsPage() {
               transition={{ duration: 0.5, ease, delay: 0.15 }}
               style={{ fontSize: "0.95rem", margin: "0 0 1rem" }}
             >
-              ORAGON diagnoses business inefficiencies and builds the software to fix
-              them — AI-powered workflows, automated pipelines, integrated systems, and
+              Oragon diagnoses business inefficiencies and builds the software to fix
+              them: AI-powered workflows, automated pipelines, integrated systems, and
               full-stack SaaS products.
             </motion.p>
             <motion.p
@@ -136,8 +85,8 @@ export default function InvestorsPage() {
               transition={{ duration: 0.5, ease, delay: 0.22 }}
               style={{ fontSize: "0.95rem", margin: 0 }}
             >
-              Our clients are Filipino businesses — from single-location retail stores to
-              multi-branch service operations — who are ready to grow but are being held
+              Our clients are Filipino businesses, from single-location retail stores to
+              multi-branch service operations, who are ready to grow but are being held
               back by manual processes, disconnected tools, and a lack of technical
               capacity in-house.
             </motion.p>
@@ -166,7 +115,7 @@ export default function InvestorsPage() {
               transition={{ duration: 0.5, ease, delay: 0.25 }}
               style={{ fontSize: "0.95rem", margin: "0 0 1rem" }}
             >
-              The Philippines has over 1 million registered businesses — the vast majority
+              The Philippines has over 1 million registered businesses, the vast majority
               still relying on spreadsheets, paper, and manual coordination. The digitization
               wave that swept Western markets a decade ago is happening here now.
             </motion.p>
@@ -176,7 +125,7 @@ export default function InvestorsPage() {
               transition={{ duration: 0.5, ease, delay: 0.32 }}
               style={{ fontSize: "0.95rem", margin: 0 }}
             >
-              We are positioned at the intersection of that shift — with local knowledge,
+              We are positioned at the intersection of that shift, with local knowledge,
               technical depth, and a track record of shipping real products.
             </motion.p>
           </div>
@@ -289,8 +238,8 @@ export default function InvestorsPage() {
           </motion.h2>
 
           {[
-            "Our near-term goal is to establish ORAGON as the go-to automation and AI partner for Philippine SMEs — building a portfolio of productized services and recurring-revenue SaaS tools that solve the most common pain points in Filipino business operations.",
-            "Longer term, we see a clear path to expanding across Southeast Asia, where the same digitization gap exists in Indonesia, Vietnam, and Thailand. The infrastructure we're building now — our delivery model, our product suite, our local reputation — is designed to scale.",
+            "Our near-term goal is to establish Oragon as the go-to automation and AI partner for Philippine SMEs, building a portfolio of productized services and recurring-revenue SaaS tools that solve the most common pain points in Filipino business operations.",
+            "Longer term, we see a clear path to expanding across Southeast Asia, where the same digitization gap exists in Indonesia, Vietnam, and Thailand. The infrastructure we're building now (our delivery model, our product suite, our local reputation) is designed to scale.",
             "We're not trying to move fast and break things. We're building a company that creates genuine value for the businesses and people it serves, and that will still be standing in 10 years.",
           ].map((text, i) => (
             <motion.p
@@ -318,7 +267,7 @@ export default function InvestorsPage() {
             transition={{ duration: 0.55, ease, delay: 0 }}
             style={{ color: "var(--text-primary)", marginBottom: "1rem" }}
           >
-            Interested in what we&apos;re building?
+            Want to talk?
           </motion.h2>
 
           <motion.p
@@ -327,8 +276,9 @@ export default function InvestorsPage() {
             transition={{ duration: 0.5, ease, delay: 0.1 }}
             style={{ marginBottom: "2rem" }}
           >
-            We&apos;re open to conversations with investors who believe in the Southeast Asian
-            market and want to back teams that ship real products.
+            If you&apos;re a Filipino business with manual work that should be automated, a
+            partner curious about what we&apos;re building, or just want to say hi, the
+            inbox is open.
           </motion.p>
 
           <motion.div
@@ -348,7 +298,7 @@ export default function InvestorsPage() {
 
       <style>{`
         @media (max-width: 768px) {
-          .investors-two-col {
+          .vision-two-col {
             grid-template-columns: 1fr !important;
             gap: 3rem !important;
           }

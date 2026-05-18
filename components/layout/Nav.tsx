@@ -2,15 +2,23 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import OragonLogo from "@/components/ui/OragonLogo";
 
 const links = [
   { label: "Services",  href: "/#services" },
   { label: "Work",      href: "/projects" },
   { label: "About",     href: "/about" },
-  { label: "Investors", href: "/investors" },
+  { label: "Vision",    href: "/vision" },
   { label: "Contact",   href: "/contact" },
 ];
+
+function isActive(href: string, pathname: string): boolean {
+  // Anchor-only links (e.g., "/#services") never get "active" state
+  if (href.startsWith("/#") || href === "/") return false;
+  const linkPath = href.split("#")[0].split("?")[0];
+  return pathname === linkPath;
+}
 
 function NavCTA({ onClick, scrolled }: { onClick?: () => void; scrolled: boolean }) {
   const [hovered, setHovered] = useState(false);
@@ -46,6 +54,7 @@ function NavCTA({ onClick, scrolled }: { onClick?: () => void; scrolled: boolean
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -77,31 +86,40 @@ export default function Nav() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0 animate-fade-up delay-2">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: linkColor,
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = linkHoverColor)
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = linkColor)
-                }
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            const active = isActive(link.href, pathname);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.75rem",
+                    fontWeight: active ? 700 : 500,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: active ? linkHoverColor : linkColor,
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                    borderBottom: active
+                      ? "2px solid #fb923c"
+                      : "2px solid transparent",
+                    paddingBottom: "3px",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active)
+                      (e.currentTarget as HTMLElement).style.color = linkHoverColor;
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active)
+                      (e.currentTarget as HTMLElement).style.color = linkColor;
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <NavCTA scrolled={scrolled} />
           </li>
@@ -148,26 +166,33 @@ export default function Nav() {
         }}
       >
         <ul className="list-none m-0 p-0 flex flex-col px-6 py-4 gap-4">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.8rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "rgba(30,24,20,0.75)",
-                  textDecoration: "none",
-                  display: "block",
-                }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            const active = isActive(link.href, pathname);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.8rem",
+                    fontWeight: active ? 700 : 500,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: active ? "#1a1a1a" : "rgba(30,24,20,0.75)",
+                    textDecoration: "none",
+                    display: "block",
+                    borderLeft: active
+                      ? "2px solid #fb923c"
+                      : "2px solid transparent",
+                    paddingLeft: "0.75rem",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <NavCTA scrolled={scrolled} onClick={() => setMenuOpen(false)} />
           </li>

@@ -9,29 +9,26 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const ServiceIcon = ({ icon }: { icon: Service["icon"] }) => {
   const icons: Record<Service["icon"], React.ReactElement> = {
-    web: (
+    pos: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/>
-        <path d="M8 21h8M12 17v4"/>
+        <rect x="3" y="4" width="18" height="14" rx="2"/>
+        <path d="M3 10h18"/>
+        <path d="M7 14h2M11 14h2"/>
+        <path d="M9 20h6"/>
       </svg>
     ),
-    ai: (
+    bookings: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z"/>
-        <circle cx="9" cy="9" r="1" fill="currentColor"/>
-        <circle cx="15" cy="9" r="1" fill="currentColor"/>
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <path d="M16 2v4M8 2v4M3 10h18"/>
+        <circle cx="8" cy="15" r="1" fill="currentColor"/>
+        <circle cx="12" cy="15" r="1" fill="currentColor"/>
+        <circle cx="16" cy="15" r="1" fill="currentColor"/>
       </svg>
     ),
-    automation: (
+    custom: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-      </svg>
-    ),
-    consulting: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-        <circle cx="9" cy="7" r="4"/>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
       </svg>
     ),
   };
@@ -75,7 +72,7 @@ export default function Services() {
             transition={{ duration: 0.6, ease, delay: 0.1 }}
             style={{ color: "var(--text-primary)", margin: 0 }}
           >
-            Services
+            Three things we build
           </motion.h2>
         </div>
 
