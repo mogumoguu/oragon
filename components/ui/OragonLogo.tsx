@@ -1,35 +1,42 @@
 type Props = {
   size?: number;
   showWordmark?: boolean;
-  /** "light" = orange mark, dark text
-   *  "dark"  = orange mark, white text
-   *  "white" = all white */
-  variant?: "light" | "dark" | "white";
+  /** "light" = dark text on light bg
+   *  "dark"  = white text on dark bg
+   *  "accent" = orange text */
+  variant?: "light" | "dark" | "accent";
 };
 
-export default function OragonLogo({ size = 32, showWordmark = true, variant = "light" }: Props) {
-  const height = size;
-  const width = Math.round(size * (46 / 28));
-  const fontSize = size * 0.55;
-  const markColor = variant === "white" ? "#ffffff" : "#fb923c";
-  const textColor = variant === "light" ? "var(--text-primary)" : "#ffffff";
+export default function OragonLogo({
+  size = 32,
+  showWordmark = true,
+  variant = "light",
+}: Props) {
+  const fontSize = size * 0.85;
+  const color =
+    variant === "dark"
+      ? "#ffffff"
+      : variant === "accent"
+        ? "#fb923c"
+        : "var(--text-primary)";
+
+  if (!showWordmark) return null;
 
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", userSelect: "none" }}>
-      {showWordmark && (
-        <span
-          style={{
-            fontFamily: "var(--font-russo)",
-            fontSize: `${fontSize}px`,
-            fontWeight: 400,
-            letterSpacing: "0.06em",
-            color: textColor,
-            lineHeight: 1,
-          }}
-        >
-          ORAGON
-        </span>
-      )}
+    <span
+      style={{
+        fontFamily: "var(--font-bricolage)",
+        fontSize: `${fontSize}px`,
+        fontWeight: 700,
+        letterSpacing: "-0.02em",
+        color,
+        lineHeight: 1,
+        display: "inline-flex",
+        alignItems: "center",
+        userSelect: "none",
+      }}
+    >
+      oragon
     </span>
   );
 }
