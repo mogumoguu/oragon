@@ -43,6 +43,6 @@ next-env.d.ts
 # design artifacts
 color-picker.html
 
-# ignore loose PNGs in root but allow public assets
+# ignore loose PNGs in root but allow anything under public/
 *.png
-!public/*.png
+!public/**/*.png
