@@ -104,7 +104,7 @@ const USE_CASES: { vertical: string; items: string[] }[] = [
 const PROCESS_STEPS: { n: string; title: string; body: string }[] = [
   { n: "01", title: "Discovery", body: "30-min call. Free. Walk through your business and the problem worth solving." },
   { n: "02", title: "Scope", body: "Written proposal. Fixed price, fixed timeline, deliverables in plain language." },
-  { n: "03", title: "Build", body: "Typically 2 to 6 weeks for the first deliverable. I keep you in the loop weekly." },
+  { n: "03", title: "Build", body: "Typically 2 to 6 weeks for the first deliverable. We keep you in the loop weekly." },
   { n: "04", title: "Handoff", body: "Training session for your team plus a written runbook. The system is yours." },
   { n: "05", title: "Support", body: "Optional monthly retainer for ongoing changes and new features." },
 ];
@@ -112,7 +112,7 @@ const PROCESS_STEPS: { n: string; title: string; body: string }[] = [
 const WHY: { title: string; body: string }[] = [
   {
     title: "AI-native build approach",
-    body: "I build with AI in the loop from the first commit. That is why I can ship in weeks what used to take months. The output is real production software, not prototypes.",
+    body: "We build with AI in the loop from the first commit. That is why we can ship in weeks what used to take months. The output is real production software, not prototypes.",
   },
   {
     title: "Built for the Philippines",
@@ -120,7 +120,7 @@ const WHY: { title: string; body: string }[] = [
   },
   {
     title: "Founder-led work",
-    body: "I do all the engineering and product work personally. No agency handoffs. The person who scopes your project is the person who ships it.",
+    body: "Oragon is small and senior by design. No agency handoffs, no junior-dev rotation. The person who scopes your project is the same person who ships it.",
   },
 ];
 
@@ -184,7 +184,7 @@ export default function ClientsPage() {
             transition={{ duration: 0.6, ease, delay: 0.08 }}
             style={{ color: "var(--text-primary)", margin: 0 }}
           >
-            What I build, how I work,{" "}
+            What we build, how we work,{" "}
             <span style={{ color: "var(--accent)" }}>and whether we&apos;re a fit.</span>
           </motion.h1>
 
@@ -194,7 +194,7 @@ export default function ClientsPage() {
             transition={{ duration: 0.5, ease, delay: 0.18 }}
             style={{ fontSize: "1.05rem", margin: "0.5rem 0 1rem", color: "var(--text-secondary)" }}
           >
-            I&apos;m Miguel, founder of Oragon. I build custom AI tools and automated workflows for Filipino businesses, solo. This page is the quickest way to see what I&apos;ve shipped, how engagements work, and whether your project is a fit.
+            Oragon is an AI automation agency for Filipino businesses. We build custom AI tools and automated workflows. This page is the quickest way to see what we&apos;ve shipped, how engagements work, and whether your project is a fit.
           </motion.p>
 
           <motion.div
@@ -234,7 +234,7 @@ export default function ClientsPage() {
         <div className="max-w-5xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "640px" }}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={portfolioInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>What I&apos;ve shipped</Eyebrow>
+              <Eyebrow>What we&apos;ve shipped</Eyebrow>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -352,7 +352,7 @@ export default function ClientsPage() {
       >
         <div className="max-w-3xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={howInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-            <Eyebrow>How I work</Eyebrow>
+            <Eyebrow>How we work</Eyebrow>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -364,7 +364,7 @@ export default function ClientsPage() {
           </motion.h2>
           {[
             "Every engagement starts with a free 30-minute discovery call. We walk through your business, find the highest-leverage thing software can fix, and decide together if it's worth building.",
-            "If we're a fit, I write a scoped SOW. Fixed price, fixed timeline, deliverables in plain language. No surprise per-seat charges, no monthly bills you didn't sign up for.",
+            "If we're a fit, we write a scoped SOW. Fixed price, fixed timeline, deliverables in plain language. No surprise per-seat charges, no monthly bills you didn't sign up for.",
             "Most projects ship in 2 to 6 weeks. You get the code, the deployment, training for your team, and a written runbook. If you want ongoing changes, we work that into a monthly retainer.",
           ].map((t, i) => (
             <motion.p
@@ -393,7 +393,7 @@ export default function ClientsPage() {
         <div className="max-w-5xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "640px" }}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={possibleInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>What I can build for you</Eyebrow>
+              <Eyebrow>What we can build for you</Eyebrow>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -401,7 +401,7 @@ export default function ClientsPage() {
               transition={{ duration: 0.55, ease, delay: 0.08 }}
               style={{ color: "var(--text-primary)", margin: 0 }}
             >
-              If you can name it, I can probably build it.
+              If you can name it, we can probably build it.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -409,7 +409,7 @@ export default function ClientsPage() {
               transition={{ duration: 0.5, ease, delay: 0.16 }}
               style={{ margin: 0 }}
             >
-              A short list of the kinds of things I&apos;ve built or am ready to build. Your project doesn&apos;t have to be on this list.
+              A short list of the kinds of things we&apos;ve built or are ready to build. Your project doesn&apos;t have to be on this list.
             </motion.p>
           </div>
 
@@ -492,7 +492,7 @@ export default function ClientsPage() {
               transition={{ duration: 0.55, ease, delay: 0.08 }}
               style={{ color: "var(--text-primary)", margin: 0 }}
             >
-              Three reasons to work with me.
+              Three reasons to work with us.
             </motion.h2>
           </div>
 
@@ -629,7 +629,7 @@ export default function ClientsPage() {
             transition={{ duration: 0.5, ease, delay: 0.16 }}
             style={{ margin: 0 }}
           >
-            I price every engagement based on what you need built, not how many people use it. The real number lives in your scoped SOW after the discovery call. Discovery is free. PHP, not USD.
+            We price every engagement based on what you need built, not how many people use it. The real number lives in your scoped SOW after the discovery call. Discovery is free. PHP, not USD.
           </motion.p>
           <motion.ul
             initial={{ opacity: 0, y: 16 }}
