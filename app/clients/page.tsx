@@ -161,9 +161,9 @@ export default function ClientsPage() {
   const processInView = useInView(processRef, { once: true, margin: "-60px" });
   const pricingInView = useInView(pricingRef, { once: true, margin: "-60px" });
 
-  function handlePrint() {
-    if (typeof window !== "undefined") window.print();
-  }
+  // Marp-generated landscape deck lives at /public/oragon-business-profile.pdf.
+  // Regenerate with `npm run deck:profile` after editing decks/business-profile.md.
+  const PROFILE_PDF = "/oragon-business-profile.pdf";
 
   return (
     <main style={{ paddingTop: "4rem" }} className="clients-page">
@@ -219,14 +219,20 @@ export default function ClientsPage() {
                   <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
-              <button
-                type="button"
-                onClick={handlePrint}
+              <a
+                href={PROFILE_PDF}
+                download="oragon-business-profile.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary print-hide"
-                style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem", cursor: "pointer" }}
+                style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }}
               >
-                Download as PDF
-              </button>
+                Download business profile
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="none">
+                  <path d="M5 1V8M5 8L1 4M5 8L9 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 11H9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+              </a>
             </motion.div>
           </div>
 

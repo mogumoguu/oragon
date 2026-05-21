@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deck:profile": "marp decks/business-profile.md --pdf --output public/oragon-business-profile.pdf --allow-local-files"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
@@ -25,6 +26,7 @@
     "three": "^0.183.2"
   },
   "devDependencies": {
+    "@marp-team/marp-cli": "^4.4.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
