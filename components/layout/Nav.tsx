@@ -7,7 +7,6 @@ import OragonLogo from "@/components/ui/OragonLogo";
 
 const links = [
   { label: "Services",     href: "/#services" },
-  { label: "Work",         href: "/projects" },
   { label: "For clients",  href: "/clients" },
   { label: "About",        href: "/about" },
   { label: "Vision",       href: "/vision" },

@@ -16,8 +16,11 @@ Agency site for ORAGON, a Filipino automation & AI agency built solo by Miguel I
 |---|---|
 | `/` | `app/page.tsx` |
 | `/about` | `app/about/page.tsx` |
-| `/projects` | `app/projects/page.tsx` |
+| `/clients` | `app/clients/page.tsx` |
 | `/vision` | `app/vision/page.tsx` |
+| `/contact` | `app/contact/page.tsx` |
+
+`/projects` was deleted on 2026-05-21 (superseded by the richer `/clients` page). A 301 redirect lives in `next.config.ts` to keep any old social/inbound links routing forward.
 
 ## Theme & Design Tokens (`app/globals.css`)
 Light theme, white base, pastel orange accent.
