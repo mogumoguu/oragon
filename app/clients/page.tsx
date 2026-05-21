@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import BookingSection from "@/components/sections/BookingSection";
 
@@ -10,9 +11,11 @@ type Project = {
   name: string;
   tagline: string;
   bullets: string[];
-  live: string;
+  liveLabel: string;
   liveUrl: string;
-  stack: string[];
+  image: string | null;
+  imageAlt: string;
+  accent: string;
 };
 
 const PROJECTS: Project[] = [
@@ -20,108 +23,81 @@ const PROJECTS: Project[] = [
     name: "SmartStock",
     tagline: "AI-powered inventory for Philippine micro-retail.",
     bullets: [
-      "Live PayMongo billing with auto-renew cards and 30-day GCash/Maya subscriptions",
-      "AI forecasting (Gemini + Prophet) on 14+ days of sales history",
-      "Auto-downgrade for expired e-wallet users via Cloud Scheduler",
+      "Live PayMongo billing",
+      "AI demand forecasting",
+      "Multi-tenant Cloud Run",
     ],
-    live: "smartstockapp.online",
+    liveLabel: "smartstockapp.online",
     liveUrl: "https://smartstockapp.online",
-    stack: ["Next.js 14", "FastAPI", "Neon Postgres", "Gemini"],
+    image: "/clients/smartstock.png",
+    imageAlt: "SmartStock dashboard with inventory KPIs and AI forecasting",
+    accent: "#fb923c",
   },
   {
     name: "School App",
-    tagline: "Multi-tenant school management for parents, teachers, and admins.",
+    tagline: "Multi-tenant school portal for parents, teachers, and admins.",
     bullets: [
-      "School-wide and per-class announcement feeds with read receipts",
-      "Grade entry plus bulk xlsx upload, with parent-facing report views",
-      "Calendar with ICS subscribe (Google Calendar one-tap)",
+      "Announcements + grades",
+      "Calendar with ICS subscribe",
+      "Multi-role auth",
     ],
-    live: "oragon-schools-app.vercel.app",
+    liveLabel: "oragon-schools-app.vercel.app",
     liveUrl: "https://oragon-schools-app.vercel.app/school-app/feed",
-    stack: ["Next.js 16", "Supabase", "Tailwind v4", "Resend"],
+    image: "/clients/schools-app-feed.png",
+    imageAlt: "School App parent feed with pinned announcements",
+    accent: "#3b82f6",
   },
   {
     name: "Oragon Bookings",
-    tagline: "Appointment and reminder automation for service businesses.",
+    tagline: "Appointment + reminder automation for service businesses.",
     bullets: [
-      "Variable-time bookings with multi-booking-per-slot capacity",
-      "Admin dashboard with reversible booking status",
-      "Built for salons, clinics, restaurants, and cafés",
+      "Variable-time slots",
+      "Multi-capacity bookings",
+      "Reversible status",
     ],
-    live: "book.oragon.com.ph",
+    liveLabel: "book.oragon.com.ph",
     liveUrl: "https://book.oragon.com.ph/demo-cafe",
-    stack: ["Next.js 15", "Supabase", "Tailwind"],
+    image: null,
+    imageAlt: "",
+    accent: "#10b981",
   },
 ];
 
-const USE_CASES: { vertical: string; items: string[] }[] = [
+const USE_CASES: { vertical: string; items: string[]; glyph: string }[] = [
   {
     vertical: "Restaurants and cafés",
-    items: [
-      "Online booking with no-show fees",
-      "Automated reminders",
-      "Branded ordering pages",
-      "Inventory + POS integration",
-    ],
+    glyph: "F",
+    items: ["Online booking", "No-show fees", "Branded ordering"],
   },
   {
     vertical: "Salons and clinics",
-    items: [
-      "Appointment booking with deposit collection",
-      "SMS or Messenger reminders",
-      "Customer database with visit history",
-    ],
+    glyph: "S",
+    items: ["Appointments", "Auto reminders", "Deposit collection"],
   },
   {
-    vertical: "Retail and sari-sari stores",
-    items: [
-      "AI inventory forecasting",
-      "Low-stock alerts",
-      "Custom barcode generation",
-      "Multi-location stock visibility",
-    ],
+    vertical: "Retail and sari-sari",
+    glyph: "R",
+    items: ["AI forecasting", "Low-stock alerts", "Barcode labels"],
   },
   {
     vertical: "Schools",
-    items: [
-      "Announcements and grade portals",
-      "Calendar with parent subscriptions",
-      "Faculty record-keeping",
-      "Magic-link sign-in for parents",
-    ],
-  },
-  {
-    vertical: "Service businesses generally",
-    items: [
-      "Outreach automation and lead scraping",
-      "Email and Messenger workflows",
-      "Internal ops dashboards",
-      "AI-assisted document drafting",
-    ],
+    glyph: "E",
+    items: ["Announcements", "Grade portals", "Parent calendar"],
   },
 ];
 
-const PROCESS_STEPS: { n: string; title: string; body: string }[] = [
-  { n: "01", title: "Discovery", body: "30-min call. Free. Walk through your business and the problem worth solving." },
-  { n: "02", title: "Scope", body: "Written proposal. Fixed price, fixed timeline, deliverables in plain language." },
-  { n: "03", title: "Build", body: "Typically 2 to 6 weeks for the first deliverable. We keep you in the loop weekly." },
-  { n: "04", title: "Handoff", body: "Training session for your team plus a written runbook. The system is yours." },
-  { n: "05", title: "Support", body: "Optional monthly retainer for ongoing changes and new features." },
+const PROCESS_STEPS: { n: string; title: string; sub: string }[] = [
+  { n: "01", title: "Discovery", sub: "30 min, free" },
+  { n: "02", title: "Scope", sub: "Fixed price, fixed timeline" },
+  { n: "03", title: "Build", sub: "2 to 6 weeks typical" },
+  { n: "04", title: "Handoff", sub: "Training + runbook" },
+  { n: "05", title: "Support", sub: "Optional retainer" },
 ];
 
-const WHY: { title: string; body: string }[] = [
-  {
-    title: "AI-native build approach",
-    body: "We build with AI in the loop from the first commit. That is why we can ship in weeks what used to take months. The output is real production software, not prototypes.",
-  },
-  {
-    title: "Built for the Philippines",
-    body: "PHP pricing, GCash and Maya and card payments through PayMongo, Filipino-SMB-scale UX. Not a foreign product with the Philippines bolted on.",
-  },
-  {
-    title: "Founder-led work",
-    body: "Oragon is small and senior by design. No agency handoffs, no junior-dev rotation. The person who scopes your project is the same person who ships it.",
-  },
+const WHY: { title: string; sub: string }[] = [
+  { title: "AI-native", sub: "Built with AI in the loop. Weeks, not months." },
+  { title: "PH-first", sub: "PHP pricing. GCash + Maya + cards. Filipino-scale UX." },
+  { title: "Founder-led", sub: "No agency handoffs. Same person scopes and ships." },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -131,7 +107,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         fontFamily: "var(--font-mono)",
         fontSize: "0.72rem",
         fontWeight: 500,
-        letterSpacing: "0.12em",
+        letterSpacing: "0.14em",
         textTransform: "uppercase",
         color: "var(--accent-text)",
         margin: 0,
@@ -139,6 +115,32 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     >
       {children}
     </p>
+  );
+}
+
+function Slide({
+  children,
+  background,
+  noBorder,
+  innerRef,
+}: {
+  children: React.ReactNode;
+  background?: string;
+  noBorder?: boolean;
+  innerRef?: React.RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <section
+      ref={innerRef}
+      className="slide"
+      style={{
+        padding: "5rem 1.5rem",
+        background: background ?? "var(--bg-base)",
+        borderTop: noBorder ? "none" : "1px solid var(--border-subtle)",
+      }}
+    >
+      {children}
+    </section>
   );
 }
 
@@ -165,100 +167,149 @@ export default function ClientsPage() {
 
   return (
     <main style={{ paddingTop: "4rem" }} className="clients-page">
-      {/* ── Hero ───────────────────────────────────────────────── */}
-      <section
-        ref={heroRef}
-        style={{
-          padding: "6rem 1.5rem 5rem",
-          background: "var(--bg-base)",
-        }}
-      >
-        <div className="max-w-3xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "1.5rem", textAlign: "center" }}>
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={heroInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-            <Eyebrow>For clients</Eyebrow>
-          </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease, delay: 0.08 }}
-            style={{ color: "var(--text-primary)", margin: 0 }}
-          >
-            What we build, how we work,{" "}
-            <span style={{ color: "var(--accent)" }}>and whether we&apos;re a fit.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0.18 }}
-            style={{ fontSize: "1.05rem", margin: "0.5rem 0 1rem", color: "var(--text-secondary)" }}
-          >
-            Oragon is an AI automation agency for Filipino businesses. We build custom AI tools and automated workflows. This page is the quickest way to see what we&apos;ve shipped, how engagements work, and whether your project is a fit.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0.28 }}
-            style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}
-          >
-            <a href="#booking" className="btn-primary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }}>
-              Book a discovery call
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <button
-              type="button"
-              onClick={handlePrint}
-              className="btn-primary print-hide"
-              style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem", cursor: "pointer" }}
-            >
-              Download as PDF
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── Portfolio ──────────────────────────────────────────── */}
-      <section
-        ref={portfolioRef}
-        style={{
-          padding: "5rem 1.5rem",
-          background: "var(--bg-surface)",
-          borderTop: "1px solid var(--border-subtle)",
-          borderBottom: "1px solid var(--border-subtle)",
-        }}
-      >
-        <div className="max-w-5xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "640px" }}>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={portfolioInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>What we&apos;ve shipped</Eyebrow>
+      {/* ── 01 Hero ────────────────────────────────────────────── */}
+      <Slide innerRef={heroRef} noBorder>
+        <div
+          className="slide-inner"
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1.2fr 1fr",
+            gap: "3rem",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={heroInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
+              <Eyebrow>For clients</Eyebrow>
             </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={portfolioInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, ease, delay: 0.08 }}
-              style={{ color: "var(--text-primary)", margin: 0 }}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease, delay: 0.08 }}
+              style={{
+                color: "var(--text-primary)",
+                margin: 0,
+                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                lineHeight: 1.02,
+              }}
             >
-              Three live products.
-            </motion.h2>
+              We build what{" "}
+              <span style={{ color: "var(--accent)" }}>actually ships.</span>
+            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
-              animate={portfolioInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, ease, delay: 0.16 }}
-              style={{ margin: 0 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: 0.18 }}
+              style={{ fontSize: "1.1rem", margin: 0, color: "var(--text-secondary)", maxWidth: "32ch" }}
             >
-              Each one shipped end-to-end and used in production today. Click through to try them yourself.
+              Custom AI tools and automated workflows for Filipino businesses.
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease, delay: 0.28 }}
+              style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}
+            >
+              <a href="#booking" className="btn-primary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }}>
+                Book a discovery call
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="btn-primary print-hide"
+                style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem", cursor: "pointer" }}
+              >
+                Download as PDF
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Visual: accent geometric block */}
+          <motion.div
+            className="hero-visual"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, ease, delay: 0.3 }}
+            style={{
+              position: "relative",
+              aspectRatio: "4 / 3",
+              borderRadius: "14px",
+              background: "linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%), var(--bg-surface)",
+              border: "1px solid var(--border)",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                inset: "1.5rem",
+                display: "grid",
+                gridTemplateRows: "auto 1fr auto",
+                gap: "1rem",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.7rem",
+                color: "var(--text-secondary)",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ color: "var(--accent-text)", letterSpacing: "0.12em", textTransform: "uppercase" }}>oragon.live</span>
+                <span style={{ display: "flex", gap: "4px" }}>
+                  {[1, 2, 3].map((i) => (
+                    <span key={i} style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--border)" }} />
+                  ))}
+                </span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                {[
+                  ["Live products", "3"],
+                  ["Verticals served", "5+"],
+                  ["First reply rate", "Solid"],
+                  ["Discovery calls", "Open"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    style={{
+                      background: "var(--bg-base)",
+                      border: "1px solid var(--border-subtle)",
+                      borderRadius: "8px",
+                      padding: "0.75rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.25rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.65rem", color: "var(--text-muted)" }}>{label}</span>
+                    <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.5rem", color: "var(--text-primary)", letterSpacing: "-0.02em" }}>{value}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ height: "3px", borderRadius: "2px", background: "linear-gradient(to right, var(--accent), transparent)" }} />
+            </div>
+          </motion.div>
+        </div>
+      </Slide>
+
+      {/* ── 02 Portfolio ──────────────────────────────────────── */}
+      <Slide background="var(--bg-surface)" innerRef={portfolioRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "1rem" }}>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={portfolioInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
+              <Eyebrow>What we&apos;ve shipped</Eyebrow>
+              <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>Three live products.</h2>
+            </motion.div>
           </div>
 
           <div
             className="portfolio-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gridTemplateColumns: "repeat(3, 1fr)",
               gap: "1.25rem",
             }}
           >
@@ -267,194 +318,228 @@ export default function ClientsPage() {
                 key={p.name}
                 initial={{ opacity: 0, y: 24 }}
                 animate={portfolioInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, ease, delay: 0.2 + i * 0.08 }}
+                transition={{ duration: 0.55, ease, delay: 0.18 + i * 0.1 }}
                 style={{
                   background: "var(--bg-base)",
                   border: "1px solid var(--border)",
-                  borderRadius: "10px",
-                  padding: "1.75rem",
+                  borderRadius: "12px",
+                  overflow: "hidden",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "1rem",
                 }}
               >
-                <div>
-                  <h3 style={{ margin: "0 0 0.4rem", color: "var(--text-primary)" }}>{p.name}</h3>
-                  <p style={{ margin: 0, fontSize: "0.95rem", color: "var(--text-secondary)" }}>{p.tagline}</p>
-                </div>
-
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  {p.bullets.map((b) => (
-                    <li
-                      key={b}
-                      style={{
-                        fontSize: "0.85rem",
-                        color: "var(--text-secondary)",
-                        paddingLeft: "1.1rem",
-                        position: "relative",
-                        lineHeight: 1.55,
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          position: "absolute",
-                          left: 0,
-                          top: "0.55rem",
-                          width: "5px",
-                          height: "5px",
-                          borderRadius: "50%",
-                          background: "var(--accent)",
-                        }}
-                      />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                  {p.stack.map((s) => (
-                    <span key={s} className="tag">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={p.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* Visual */}
+                <div
                   style={{
-                    marginTop: "auto",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.75rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    color: "var(--accent-text)",
-                    textDecoration: "none",
-                    paddingTop: "0.5rem",
-                    borderTop: "1px solid var(--border-subtle)",
+                    aspectRatio: "16 / 10",
+                    background: p.image
+                      ? "var(--bg-elevated)"
+                      : `linear-gradient(135deg, ${p.accent}22 0%, ${p.accent}08 100%)`,
+                    borderBottom: "1px solid var(--border-subtle)",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
-                  View live → {p.live}
-                </a>
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt={p.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        padding: "1.5rem",
+                      }}
+                    >
+                      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <rect x="6" y="14" width="44" height="32" rx="4" stroke={p.accent} strokeWidth="2" />
+                        <path d="M14 26 L24 36 L42 18" stroke={p.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.12em",
+                          textTransform: "uppercase",
+                          color: p.accent,
+                        }}
+                      >
+                        Live demo
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Body */}
+                <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.9rem", flex: 1 }}>
+                  <div>
+                    <h3 style={{ margin: "0 0 0.3rem", color: "var(--text-primary)", fontSize: "1.2rem" }}>{p.name}</h3>
+                    <p style={{ margin: 0, fontSize: "0.88rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>{p.tagline}</p>
+                  </div>
+
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                    {p.bullets.map((b) => (
+                      <li
+                        key={b}
+                        style={{
+                          fontSize: "0.82rem",
+                          color: "var(--text-secondary)",
+                          paddingLeft: "1rem",
+                          position: "relative",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: "0.5rem",
+                            width: "5px",
+                            height: "5px",
+                            borderRadius: "50%",
+                            background: p.accent,
+                          }}
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      marginTop: "auto",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "var(--accent-text)",
+                      textDecoration: "none",
+                      paddingTop: "0.6rem",
+                      borderTop: "1px solid var(--border-subtle)",
+                    }}
+                  >
+                    View live → {p.liveLabel}
+                  </a>
+                </div>
               </motion.article>
             ))}
           </div>
         </div>
-      </section>
+      </Slide>
 
-      {/* ── How I work ─────────────────────────────────────────── */}
-      <section
-        ref={howRef}
-        style={{ padding: "5rem 1.5rem" }}
-      >
-        <div className="max-w-3xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      {/* ── 03 How we work ────────────────────────────────────── */}
+      <Slide innerRef={howRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={howInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
             <Eyebrow>How we work</Eyebrow>
+            <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>
+              Custom builds, <span style={{ color: "var(--accent)" }}>not subscriptions.</span>
+            </h2>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={howInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, ease, delay: 0.08 }}
-            style={{ color: "var(--text-primary)", margin: 0 }}
-          >
-            Custom builds, not subscriptions.
-          </motion.h2>
-          {[
-            "Every engagement starts with a free 30-minute discovery call. We walk through your business, find the highest-leverage thing software can fix, and decide together if it's worth building.",
-            "If we're a fit, we write a scoped SOW. Fixed price, fixed timeline, deliverables in plain language. No surprise per-seat charges, no monthly bills you didn't sign up for.",
-            "Most projects ship in 2 to 6 weeks. You get the code, the deployment, training for your team, and a written runbook. If you want ongoing changes, we work that into a monthly retainer.",
-          ].map((t, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={howInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, ease, delay: 0.16 + i * 0.08 }}
-              style={{ margin: 0, fontSize: "0.95rem" }}
-            >
-              {t}
-            </motion.p>
-          ))}
-        </div>
-      </section>
 
-      {/* ── What I can build ───────────────────────────────────── */}
-      <section
-        ref={possibleRef}
-        style={{
-          padding: "5rem 1.5rem",
-          background: "var(--bg-surface)",
-          borderTop: "1px solid var(--border-subtle)",
-          borderBottom: "1px solid var(--border-subtle)",
-        }}
-      >
-        <div className="max-w-5xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "640px" }}>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={possibleInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>What we can build for you</Eyebrow>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={possibleInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, ease, delay: 0.08 }}
-              style={{ color: "var(--text-primary)", margin: 0 }}
-            >
-              If you can name it, we can probably build it.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={possibleInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, ease, delay: 0.16 }}
-              style={{ margin: 0 }}
-            >
-              A short list of the kinds of things we&apos;ve built or are ready to build. Your project doesn&apos;t have to be on this list.
-            </motion.p>
+          <div
+            className="how-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}
+          >
+            {[
+              { tag: "Step one", title: "Free discovery call", body: "30 minutes. We find the highest-leverage thing software can fix." },
+              { tag: "Step two", title: "Scoped SOW", body: "Fixed price. Fixed timeline. Plain language. No per-seat surprises." },
+              { tag: "Step three", title: "Ship in weeks", body: "2 to 6 weeks typical. Code, deployment, training, runbook." },
+            ].map((s, i) => (
+              <motion.div
+                key={s.tag}
+                initial={{ opacity: 0, y: 20 }}
+                animate={howInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, ease, delay: 0.18 + i * 0.08 }}
+                style={{ display: "flex", flexDirection: "column", gap: "0.8rem", borderTop: "2px solid var(--accent)", paddingTop: "1.25rem" }}
+              >
+                <Eyebrow>{s.tag}</Eyebrow>
+                <h3 style={{ margin: 0, color: "var(--text-primary)", fontSize: "1.25rem" }}>{s.title}</h3>
+                <p style={{ margin: 0, fontSize: "0.92rem", lineHeight: 1.55 }}>{s.body}</p>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </Slide>
+
+      {/* ── 04 What we can build ──────────────────────────────── */}
+      <Slide background="var(--bg-surface)" innerRef={possibleRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={possibleInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
+            <Eyebrow>What we can build</Eyebrow>
+            <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>
+              If you can name it, <span style={{ color: "var(--accent)" }}>we can probably build it.</span>
+            </h2>
+          </motion.div>
 
           <div
             className="use-cases-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-              gap: "1.25rem",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem" }}
           >
             {USE_CASES.map((u, i) => (
               <motion.div
                 key={u.vertical}
                 initial={{ opacity: 0, y: 20 }}
                 animate={possibleInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, ease, delay: 0.2 + i * 0.06 }}
+                transition={{ duration: 0.5, ease, delay: 0.16 + i * 0.06 }}
                 style={{
                   background: "var(--bg-base)",
                   border: "1px solid var(--border)",
-                  borderRadius: "10px",
+                  borderRadius: "12px",
                   padding: "1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  minHeight: "220px",
                 }}
               >
-                <p
+                <div
+                  aria-hidden="true"
                   style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "8px",
+                    background: "var(--accent-glow)",
+                    color: "var(--accent-text)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "1.05rem",
-                    color: "var(--text-primary)",
-                    margin: "0 0 0.75rem",
+                    fontWeight: 800,
+                    fontSize: "1.4rem",
+                    letterSpacing: "-0.02em",
                   }}
                 >
+                  {u.glyph}
+                </div>
+                <p style={{ margin: 0, fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "0.95rem", color: "var(--text-primary)" }}>
                   {u.vertical}
                 </p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.35rem" }}>
                   {u.items.map((item) => (
                     <li
                       key={item}
                       style={{
-                        fontSize: "0.85rem",
+                        fontSize: "0.8rem",
                         color: "var(--text-secondary)",
-                        paddingLeft: "1rem",
+                        paddingLeft: "0.9rem",
                         position: "relative",
-                        lineHeight: 1.5,
+                        lineHeight: 1.45,
                       }}
                     >
                       <span
@@ -477,32 +562,21 @@ export default function ClientsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Slide>
 
-      {/* ── Why Oragon ─────────────────────────────────────────── */}
-      <section ref={whyRef} style={{ padding: "5rem 1.5rem" }}>
-        <div className="max-w-5xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "640px" }}>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={whyInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>Why Oragon</Eyebrow>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={whyInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, ease, delay: 0.08 }}
-              style={{ color: "var(--text-primary)", margin: 0 }}
-            >
-              Three reasons to work with us.
-            </motion.h2>
-          </div>
+      {/* ── 05 Why Oragon ─────────────────────────────────────── */}
+      <Slide innerRef={whyRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={whyInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
+            <Eyebrow>Why Oragon</Eyebrow>
+            <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>
+              Three reasons <span style={{ color: "var(--accent)" }}>to work with us.</span>
+            </h2>
+          </motion.div>
 
           <div
             className="why-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "1.25rem",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}
           >
             {WHY.map((w, i) => (
               <motion.div
@@ -511,186 +585,179 @@ export default function ClientsPage() {
                 animate={whyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, ease, delay: 0.16 + i * 0.08 }}
                 style={{
-                  borderTop: "2px solid var(--accent)",
-                  paddingTop: "1.25rem",
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "12px",
+                  padding: "1.75rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                  minHeight: "180px",
                 }}
               >
-                <p
+                <div
+                  aria-hidden="true"
                   style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    color: "var(--text-primary)",
-                    margin: "0 0 0.75rem",
+                    width: "36px",
+                    height: "4px",
+                    borderRadius: "2px",
+                    background: "var(--accent)",
                   }}
-                >
-                  {w.title}
-                </p>
-                <p style={{ margin: 0, fontSize: "0.92rem", lineHeight: 1.65 }}>{w.body}</p>
+                />
+                <h3 style={{ margin: "0.25rem 0 0", color: "var(--text-primary)", fontSize: "1.4rem" }}>{w.title}</h3>
+                <p style={{ margin: 0, fontSize: "0.92rem", lineHeight: 1.55 }}>{w.sub}</p>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </Slide>
 
-      {/* ── Process ────────────────────────────────────────────── */}
-      <section
-        ref={processRef}
-        style={{
-          padding: "5rem 1.5rem",
-          background: "var(--bg-surface)",
-          borderTop: "1px solid var(--border-subtle)",
-          borderBottom: "1px solid var(--border-subtle)",
-        }}
-      >
-        <div className="max-w-3xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={processInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
-              <Eyebrow>Process</Eyebrow>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={processInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, ease, delay: 0.08 }}
-              style={{ color: "var(--text-primary)", margin: 0 }}
-            >
-              Five steps from first call to live system.
-            </motion.h2>
-          </div>
+      {/* ── 06 Process ─────────────────────────────────────────── */}
+      <Slide background="var(--bg-surface)" innerRef={processRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={processInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
+            <Eyebrow>Process</Eyebrow>
+            <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>
+              Five steps. <span style={{ color: "var(--accent)" }}>First call to live system.</span>
+            </h2>
+          </motion.div>
 
-          <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div
+            className="process-row"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(5, 1fr)",
+              gap: "1rem",
+            }}
+          >
             {PROCESS_STEPS.map((s, i) => (
-              <motion.li
+              <motion.div
                 key={s.n}
                 initial={{ opacity: 0, y: 16 }}
                 animate={processInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, ease, delay: 0.14 + i * 0.06 }}
+                transition={{ duration: 0.45, ease, delay: 0.16 + i * 0.06 }}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "auto 1fr",
-                  gap: "1.25rem",
-                  alignItems: "start",
+                  background: "var(--bg-base)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "10px",
+                  padding: "1.25rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.6rem",
+                  minHeight: "150px",
                 }}
               >
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "0.72rem",
+                    fontSize: "0.85rem",
                     fontWeight: 500,
-                    letterSpacing: "0.1em",
+                    letterSpacing: "0.08em",
                     color: "var(--accent-text)",
-                    background: "var(--accent-glow)",
-                    border: "1px solid var(--accent-glow-strong)",
-                    padding: "0.3rem 0.55rem",
-                    borderRadius: "3px",
-                    minWidth: "2.5rem",
-                    textAlign: "center",
                   }}
                 >
                   {s.n}
                 </span>
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontWeight: 700,
-                      fontSize: "1.05rem",
-                      color: "var(--text-primary)",
-                      margin: "0 0 0.35rem",
-                    }}
-                  >
-                    {s.title}
-                  </p>
-                  <p style={{ margin: 0, fontSize: "0.92rem", lineHeight: 1.6 }}>{s.body}</p>
-                </div>
-              </motion.li>
+                <h3 style={{ margin: 0, color: "var(--text-primary)", fontSize: "1.05rem" }}>{s.title}</h3>
+                <p style={{ margin: 0, fontSize: "0.8rem", color: "var(--text-secondary)", lineHeight: 1.5 }}>{s.sub}</p>
+              </motion.div>
             ))}
-          </ol>
+          </div>
         </div>
-      </section>
+      </Slide>
 
-      {/* ── Pricing approach ───────────────────────────────────── */}
-      <section ref={pricingRef} style={{ padding: "5rem 1.5rem" }}>
-        <div className="max-w-3xl mx-auto" style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      {/* ── 07 Pricing ─────────────────────────────────────────── */}
+      <Slide innerRef={pricingRef}>
+        <div className="slide-inner" style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={pricingInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
             <Eyebrow>Pricing</Eyebrow>
+            <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>
+              Per-project. <span style={{ color: "var(--accent)" }}>Not per-seat.</span>
+            </h2>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={pricingInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, ease, delay: 0.08 }}
-            style={{ color: "var(--text-primary)", margin: 0 }}
-          >
-            Per-project, not per-seat.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={pricingInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0.16 }}
-            style={{ margin: 0 }}
-          >
-            We price every engagement based on what you need built, not how many people use it. The real number lives in your scoped SOW after the discovery call. Discovery is free. PHP, not USD.
-          </motion.p>
-          <motion.ul
-            initial={{ opacity: 0, y: 16 }}
-            animate={pricingInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0.24 }}
-            style={{ listStyle: "none", padding: 0, margin: "0.5rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}
+
+          <div
+            className="pricing-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}
           >
             {[
-              "Fixed-price project: one-time engagement, scoped and shipped",
-              "Project plus retainer: ongoing maintenance and new features",
-              "No published price tags. The right number depends on the scope.",
-            ].map((line) => (
-              <li
-                key={line}
+              { title: "Fixed project", sub: "One-time scope. One-time price. Shipped." },
+              { title: "Project plus retainer", sub: "Build, then ongoing monthly support." },
+              { title: "Discovery is free", sub: "30 min, no pitch deck attached." },
+            ].map((card, i) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={pricingInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, ease, delay: 0.16 + i * 0.08 }}
                 style={{
-                  fontSize: "0.92rem",
-                  color: "var(--text-secondary)",
-                  paddingLeft: "1.2rem",
-                  position: "relative",
-                  lineHeight: 1.55,
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "12px",
+                  padding: "1.75rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.6rem",
                 }}
               >
-                <span
-                  aria-hidden="true"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "0.55rem",
-                    width: "5px",
-                    height: "5px",
-                    borderRadius: "50%",
-                    background: "var(--accent)",
-                  }}
-                />
-                {line}
-              </li>
+                <h3 style={{ margin: 0, color: "var(--text-primary)", fontSize: "1.15rem" }}>{card.title}</h3>
+                <p style={{ margin: 0, fontSize: "0.9rem", lineHeight: 1.55 }}>{card.sub}</p>
+              </motion.div>
             ))}
-          </motion.ul>
-        </div>
-      </section>
+          </div>
 
-      {/* ── Closing CTA: embedded booking ──────────────────────── */}
+          <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--text-muted)", textAlign: "center" }}>
+            PHP, not USD. Real number lands in your SOW.
+          </p>
+        </div>
+      </Slide>
+
+      {/* ── 08 Closing CTA: embedded booking ──────────────────── */}
       <BookingSection />
 
-      {/* ── Print styles ───────────────────────────────────────── */}
+      {/* ── Print + responsive styles ─────────────────────────── */}
       <style>{`
-        .portfolio-grid > article {
-          min-height: 100%;
+        .slide {
+          page-break-inside: avoid;
         }
-        @media (max-width: 640px) {
-          .portfolio-grid,
-          .use-cases-grid,
-          .why-grid {
+
+        @media (max-width: 900px) {
+          .slide-inner[style*="grid-template-columns: 1.2fr 1fr"],
+          .slide-inner[style*="grid-template-columns: 1fr 1fr"] {
             grid-template-columns: 1fr !important;
           }
+          .portfolio-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .use-cases-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .how-grid,
+          .why-grid,
+          .pricing-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .process-row {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .use-cases-grid,
+          .process-row {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
+        @page {
+          size: A4 landscape;
+          margin: 0.5cm;
         }
         @media print {
           html, body {
             background: #ffffff !important;
             color: #1a1a1a !important;
           }
+          /* Hide chrome */
           header[class*="fixed"],
           .print-hide,
           #booking,
@@ -700,12 +767,29 @@ export default function ClientsPage() {
           .clients-page {
             padding-top: 0 !important;
           }
-          .clients-page section {
-            padding: 1.25rem 0 !important;
+          /* Each section becomes its own landscape slide */
+          .clients-page .slide {
+            padding: 1.5rem 1cm !important;
             border: none !important;
             background: #ffffff !important;
+            page-break-before: always;
             page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 19cm;
           }
+          .clients-page .slide:first-of-type {
+            page-break-before: avoid;
+          }
+          .clients-page .slide-inner {
+            max-width: 100% !important;
+          }
+          /* Hero visual stays visible in print */
+          .hero-visual {
+            box-shadow: none !important;
+          }
+          /* Tone down colors for print */
           .clients-page h1,
           .clients-page h2,
           .clients-page h3 {
@@ -715,9 +799,10 @@ export default function ClientsPage() {
           .clients-page li {
             color: #4a4a4a !important;
           }
-          .clients-page .tag {
-            background: #ffffff !important;
-            border-color: #e5e0db !important;
+          /* Keep accent colored elements vivid */
+          .clients-page h1 span,
+          .clients-page h2 span {
+            color: #ea580c !important;
           }
         }
       `}</style>
