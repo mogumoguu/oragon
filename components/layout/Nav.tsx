@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import OragonLogo from "@/components/ui/OragonLogo";
 
 const links = [
-  { label: "Services",  href: "/#services" },
-  { label: "Work",      href: "/projects" },
-  { label: "About",     href: "/about" },
-  { label: "Vision",    href: "/vision" },
-  { label: "Contact",   href: "/contact" },
+  { label: "Services",     href: "/#services" },
+  { label: "Work",         href: "/projects" },
+  { label: "For clients",  href: "/clients" },
+  { label: "About",        href: "/about" },
+  { label: "Vision",       href: "/vision" },
+  { label: "Contact",      href: "/contact" },
 ];
 
 function isActive(href: string, pathname: string): boolean {
