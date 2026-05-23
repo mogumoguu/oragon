@@ -30,4 +30,14 @@ export const projects: Project[] = [
     image: "/clients/schools-app-feed.png",
     liveUrl: "https://oragon-schools-app.vercel.app/school-app/admin/login",
   },
+  {
+    id: "dormhunter",
+    title: "Dormhunter PH",
+    description:
+      "Search-first dorm finder for Big 4 PH college students (DLSU, UP Diliman, Ateneo, UST). Hybrid listings — buildings with nested unit types, photos, walking distance from each campus. Students unlock landlord contact info with a one-time ₱150 hunt pass (30 days). Admin scouts listings; landlords claim and take over. Shipped W1 in a single session.",
+    tags: ["Next.js", "Supabase", "Haversine", "PayMongo", "Marketplace"],
+    status: "live",
+    image: "/clients/dormhunter-search.png",
+    liveUrl: "https://dormhunter.vercel.app",
+  },
 ];
