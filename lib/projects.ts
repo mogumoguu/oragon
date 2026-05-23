@@ -20,4 +20,14 @@ export const projects: Project[] = [
     image: "/smartstock.png",
     liveUrl: "https://smartstockapp.online",
   },
+  {
+    id: "school-app",
+    title: "School App",
+    description:
+      "Multi-tenant school management system for K-12 schools. Admin posts announcements, manages users, schedules calendar events. Faculty enters grades by class, subject, and quarter, or bulk-uploads .xlsx. Parents see their kids' grades and subscribe to the school calendar via webcal. Magic-link auth. Demo login — admin@schoolapp.test / letmein123",
+    tags: ["Next.js", "Supabase", "Multi-tenant", "Magic-link auth", "ICS"],
+    status: "live",
+    image: "/clients/schools-app-feed.png",
+    liveUrl: "https://oragon-schools-app.vercel.app/school-app/admin/login",
+  },
 ];
