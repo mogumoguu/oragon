@@ -61,6 +61,20 @@ const PROJECTS: Project[] = [
     imageAlt: "",
     accent: "#10b981",
   },
+  {
+    name: "Dormhunter PH",
+    tagline: "Dorm search for Big 4 PH college students.",
+    bullets: [
+      "Hybrid building + units",
+      "₱150 hunt pass paywall",
+      "Walking distance to campus",
+    ],
+    liveLabel: "dormhunter.vercel.app",
+    liveUrl: "https://dormhunter.vercel.app",
+    image: "/clients/dormhunter-search.png",
+    imageAlt: "Dormhunter PH search page with dorm listings near DLSU",
+    accent: "#a855f7",
+  },
 ];
 
 const USE_CASES: { vertical: string; items: string[]; glyph: string }[] = [
@@ -273,7 +287,7 @@ export default function ClientsPage() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                 {[
-                  ["Live products", "3"],
+                  ["Live products", "4"],
                   ["Verticals served", "5+"],
                   ["First reply rate", "Solid"],
                   ["Discovery calls", "Open"],
@@ -307,7 +321,7 @@ export default function ClientsPage() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "1rem" }}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={portfolioInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
               <Eyebrow>What we&apos;ve shipped</Eyebrow>
-              <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>Three live products.</h2>
+              <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>Four live products.</h2>
             </motion.div>
           </div>
 
@@ -315,7 +329,7 @@ export default function ClientsPage() {
             className="portfolio-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(2, 1fr)",
               gap: "1.25rem",
             }}
           >
