@@ -41,7 +41,7 @@ Color aliases (`--blue-500`, `--indigo-300`, etc.) for the aurora component are 
 ## Page Structure (`app/page.tsx`)
 Home page renders: `Hero → Proof → Services → BookingSection → FounderNote → Contact`
 (Rebuilt 2026-05-18 per `MI OS/02-build/plans/2026-05-18-oragon-site-rebuild-spec.md`.)
-About, Projects, and Vision pages remain as standalone routes.
+About, Clients, Vision, and Contact pages remain as standalone routes.
 
 ## Key Components
 
@@ -53,23 +53,21 @@ About, Projects, and Vision pages remain as standalone routes.
 ### UI
 - `components/ui/OragonLogo.tsx` — Inline SVG logo. Shield outline + flame mark in `#fb923c`. Variants: `"light"` (orange mark + dark text), `"dark"` (orange mark + white text), `"white"` (all white).
 - `components/ui/aurora-background.tsx` — Aceternity aurora effect. Used in Hero as full-height wrapper. Blue/violet shimmer, top-right masked, `opacity-35`, `invert` filter for light mode.
-- `components/ui/ProjectCard.tsx` — Project card with status badge (green = live, orange = in-progress).
 - `components/ui/RevealBox.tsx` — Scroll-triggered reveal animation wrapper.
 - `components/ui/HeroCanvas.tsx` — Legacy particle canvas. No longer used in Hero (replaced by aurora).
 
 ### Sections (current homepage)
 - `Hero.tsx` — Uses `<AuroraBackground>` as wrapper. Headline "I build AI automation that actually ships." Single CTA: "Book a call" scrolling to booking section.
-- `Proof.tsx` — Single line: "Already built: SmartStock (live) · Oragon Bookings (live)".
+- `Proof.tsx` — Single line: "Already built: SmartStock · School App · Oragon Bookings · Dormhunter PH" (all live, linked to canonical demo URLs that match `/clients`).
 - `Services.tsx` — Transparent background. Three cards from `lib/services.ts`: POS+Sales, Bookings, Custom Workflows.
 - `BookingSection.tsx` — Cal.com inline embed for 30-min discovery call. Fallback link: support@oragon.com.ph.
 - `FounderNote.tsx` — Founder note from Miguel.
 - `Contact.tsx` — `bg-surface` cream background. Demoted to fallback path.
 
 ### Sections (dead code — kept in repo but not imported)
-- `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Testimonials.tsx`, `Skills.tsx`, `Projects.tsx`
+- `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Testimonials.tsx`, `Skills.tsx`
 
 ## Data (`lib/`)
-- `lib/projects.ts` — Smart Stock (live), AutoServe (in-progress). Type includes `status: "live" | "in-progress"`.
 - `lib/services.ts` — Service card data.
 - `lib/socials.ts` — LinkedIn set to `linkedin.com/company/oragon`.
 - `lib/utils.ts` — `cn()` helper (clsx + tailwind-merge).
