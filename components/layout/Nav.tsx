@@ -20,7 +20,7 @@ function isActive(href: string, pathname: string): boolean {
   return pathname === linkPath;
 }
 
-function NavCTA({ onClick, scrolled }: { onClick?: () => void; scrolled: boolean }) {
+function NavCTA({ onClick }: { onClick?: () => void }) {
   const [hovered, setHovered] = useState(false);
   return (
     <Link
@@ -121,7 +121,7 @@ export default function Nav() {
             );
           })}
           <li>
-            <NavCTA scrolled={scrolled} />
+            <NavCTA />
           </li>
         </ul>
 
@@ -194,7 +194,7 @@ export default function Nav() {
             );
           })}
           <li>
-            <NavCTA scrolled={scrolled} onClick={() => setMenuOpen(false)} />
+            <NavCTA onClick={() => setMenuOpen(false)} />
           </li>
         </ul>
       </div>
