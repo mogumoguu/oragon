@@ -34,20 +34,6 @@ const PROJECTS: Project[] = [
     accent: "#fb923c",
   },
   {
-    name: "School App",
-    tagline: "Multi-tenant school portal for parents, teachers, and admins.",
-    bullets: [
-      "Announcements + grades",
-      "Calendar with ICS subscribe",
-      "Multi-role auth",
-    ],
-    liveLabel: "oragon-schools-app.vercel.app",
-    liveUrl: "https://oragon-schools-app.vercel.app/school-app/feed",
-    image: "/clients/schools-app-feed.png",
-    imageAlt: "School App parent feed with pinned announcements",
-    accent: "#3b82f6",
-  },
-  {
     name: "Oragon Bookings",
     tagline: "Appointment + reminder automation for service businesses.",
     bullets: [
@@ -60,20 +46,6 @@ const PROJECTS: Project[] = [
     image: null,
     imageAlt: "",
     accent: "#10b981",
-  },
-  {
-    name: "Dormhunter PH",
-    tagline: "Dorm search for Big 4 PH college students.",
-    bullets: [
-      "Hybrid building + units",
-      "₱150 hunt pass paywall",
-      "Walking distance to campus",
-    ],
-    liveLabel: "dormhunter.vercel.app",
-    liveUrl: "https://dormhunter.vercel.app",
-    image: "/clients/dormhunter-search.png",
-    imageAlt: "Dormhunter PH search page with dorm listings near DLSU",
-    accent: "#a855f7",
   },
 ];
 
@@ -287,7 +259,7 @@ export default function ClientsPage() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                 {[
-                  ["Live products", "4"],
+                  ["Live products", "2"],
                   ["Verticals served", "5+"],
                   ["First reply rate", "Solid"],
                   ["Discovery calls", "Open"],
@@ -321,7 +293,7 @@ export default function ClientsPage() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "1rem" }}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={portfolioInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, ease }}>
               <Eyebrow>What we&apos;ve shipped</Eyebrow>
-              <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>Four live products.</h2>
+              <h2 style={{ color: "var(--text-primary)", margin: "0.5rem 0 0" }}>Live products.</h2>
             </motion.div>
           </div>
 

@@ -58,7 +58,7 @@ About, Clients, Vision, and Contact pages remain as standalone routes.
 
 ### Sections (current homepage)
 - `Hero.tsx` — Uses `<AuroraBackground>` as wrapper. Headline "I build AI automation that actually ships." Single CTA: "Book a call" scrolling to booking section.
-- `Proof.tsx` — Single line: "Already built: SmartStock · School App · Oragon Bookings · Dormhunter PH" (all live, linked to canonical demo URLs that match `/clients`).
+- `Proof.tsx` — Single line: "Already built: SmartStock · Oragon Bookings" (linked to canonical demo URLs that match `/clients`). School App + Dormhunter PH were soft-archived 2026-06-07 (removed from the site to narrow focus; deployments still live).
 - `Services.tsx` — Transparent background. Three cards from `lib/services.ts`: POS+Sales, Bookings, Custom Workflows.
 - `BookingSection.tsx` — Cal.com inline embed for 30-min discovery call. Fallback link: support@oragon.com.ph.
 - `FounderNote.tsx` — Founder note from Miguel.

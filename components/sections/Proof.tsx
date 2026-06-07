@@ -7,9 +7,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const proofItems = [
   { label: "SmartStock", href: "https://smartstockapp.online", status: "live" as const },
-  { label: "School App", href: "https://oragon-schools-app.vercel.app/school-app/feed", status: "live" as const },
   { label: "Oragon Bookings", href: "https://book.oragon.com.ph/demo-cafe", status: "live" as const },
-  { label: "Dormhunter PH", href: "https://dormhunter.vercel.app", status: "live" as const },
 ];
 
 export default function Proof() {
