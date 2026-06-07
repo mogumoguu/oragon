@@ -53,6 +53,12 @@ color: '#1a1a1a'
     border-radius: 2px;
     margin-bottom: 18px;
   }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
   .grid-3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -277,20 +283,14 @@ color: '#1a1a1a'
 <p class="eyebrow">What we've shipped</p>
 <div class="accent-bar"></div>
 
-<h2>Three live products.</h2>
+<h2>Two live products.</h2>
 
-<div class="grid-3">
+<div class="grid-2">
   <div class="card">
     <img src="../public/clients/smartstock.png" class="product-shot" alt="SmartStock dashboard" />
     <p class="card-title">SmartStock</p>
     <p class="card-sub">AI inventory SaaS for Philippine micro-retail.</p>
     <p class="card-num">smartstockapp.online</p>
-  </div>
-  <div class="card">
-    <img src="../public/clients/schools-app-feed.png" class="product-shot" alt="School App parent feed" />
-    <p class="card-title">School App</p>
-    <p class="card-sub">Multi-tenant school portal for parents, faculty, admins.</p>
-    <p class="card-num">oragon-schools-app.vercel.app</p>
   </div>
   <div class="card">
     <div class="product-shot-placeholder">Live demo</div>
@@ -328,36 +328,6 @@ color: '#1a1a1a'
 <div class="footer-line">
   <span>Live since 2026</span>
   <span class="live-url">smartstockapp.online</span>
-</div>
-
----
-
-<p class="eyebrow">Product · School App</p>
-<div class="accent-bar"></div>
-
-<h2>Multi-tenant <span class="accent">school portal.</span></h2>
-
-<div class="product-cover">
-  <img src="../public/clients/schools-app-feed.png" class="product-shot" alt="School App parent feed" />
-  <div>
-    <ul class="bullet-list">
-      <li>School-wide and per-class announcements with read receipts</li>
-      <li>Grade entry plus bulk xlsx upload, parent-facing report views</li>
-      <li>Calendar with ICS subscribe — one-tap Google Calendar sync</li>
-      <li>Magic-link auth for parents and students, password for admin and faculty</li>
-    </ul>
-    <div class="tag-row" style="margin-top: 24px;">
-      <span class="tag">Next.js 16</span>
-      <span class="tag">Supabase</span>
-      <span class="tag">Tailwind v4</span>
-      <span class="tag">Resend</span>
-    </div>
-  </div>
-</div>
-
-<div class="footer-line">
-  <span>Live since 2026</span>
-  <span class="live-url">oragon-schools-app.vercel.app</span>
 </div>
 
 ---
