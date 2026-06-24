@@ -49,8 +49,8 @@ export default function Hero() {
             marginBottom: "0.75rem",
           }}
         >
-          We build AI automation that{" "}
-          <span style={{ color: "var(--accent)" }}>actually ships.</span>
+          Every business is leaking time and money.{" "}
+          <span style={{ color: "var(--accent)" }}>We find the leak first.</span>
         </motion.h1>
 
         {/* Glow line */}
@@ -97,7 +97,7 @@ export default function Hero() {
             fontWeight: 500,
           }}
         >
-          Custom AI tools and automated workflows for Filipino SMEs. Book a 30-min discovery call to see if we&apos;re a fit.
+          Oragon runs a free Leak Map on your business, finds the one process bleeding the most time and money, then builds the fix you own outright. No lock-in.
         </motion.p>
 
         {/* Single CTA */}
@@ -111,7 +111,7 @@ export default function Hero() {
             className="btn-primary"
             style={{ fontSize: "0.95rem", padding: "0.85rem 2rem" }}
           >
-            Book a call
+            Get your free Leak Map
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

@@ -9,23 +9,23 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const steps = [
   {
     number: "01",
-    title: "Discovery",
-    description: "We learn your goals, constraints, and timeline. No assumptions — just the right questions.",
+    title: "The Leak Map",
+    description: "We diagnose your business and pinpoint the single process bleeding the most time or money. It is free, and it is yours to keep even if we never build a thing.",
   },
   {
     number: "02",
-    title: "Design & Plan",
-    description: "Architecture, scope, and a clear delivery roadmap before a single line of code is written.",
+    title: "Build",
+    description: "We build the fix around how you already work, on a proven stack. You see it early, and you own it outright. No per-seat fees.",
   },
   {
     number: "03",
-    title: "Build & Iterate",
-    description: "Hands-on development with regular check-ins. You see progress early and often.",
+    title: "Automate",
+    description: "We wire in the automation that removes the manual work for good, so the leak stays sealed without anyone babysitting it.",
   },
   {
     number: "04",
-    title: "Launch & Support",
-    description: "Deployment, handoff, and ongoing availability. We don't disappear after go-live.",
+    title: "Handoff",
+    description: "You get the keys: a working system, a walkthrough, and training. It is yours. We stay on a light retainer only if you want us to.",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function Process() {
           }}
         >
           <RevealBox inView={inView} delay={0}>
-            How We Work
+            The Oragon Operating System
           </RevealBox>
         </p>
 
@@ -66,7 +66,7 @@ export default function Process() {
           transition={{ duration: 0.6, ease, delay: 0.1 }}
           style={{ color: "var(--text-primary)", marginBottom: "3.5rem" }}
         >
-          A process built for clarity.
+          From leak to a system you own.
         </motion.h2>
 
         {/* Steps grid */}

@@ -54,7 +54,7 @@ export default function BookingSection() {
             }}
           >
             <RevealBox inView={inView} delay={0}>
-              Book a discovery call
+              Get your free Leak Map
             </RevealBox>
           </p>
           <motion.h2
@@ -63,7 +63,7 @@ export default function BookingSection() {
             transition={{ duration: 0.55, ease, delay: 0.1 }}
             style={{ color: "var(--text-primary)", margin: "0 0 1rem" }}
           >
-            30 minutes. Free.
+            Your Leak Map. 30 minutes. Free.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -76,7 +76,7 @@ export default function BookingSection() {
               margin: "0 auto",
             }}
           >
-            We walk through your business, find the highest-leverage automation, and tell you straight up if we can help.
+            We walk through your business, pinpoint the one process bleeding the most, and tell you straight up if we can help. That is your Leak Map, free.
           </motion.p>
         </div>
 
