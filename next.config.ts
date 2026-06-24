@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         destination: "/#work",
         permanent: true,
       },
+      // /vision merged into the rewritten /about page (2026-06-24).
+      {
+        source: "/vision",
+        destination: "/about",
+        permanent: true,
+      },
     ];
   },
 };

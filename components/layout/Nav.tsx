@@ -5,10 +5,10 @@ import Link from "next/link";
 import OragonLabsLogo from "@/components/ui/OragonLabsLogo";
 
 const links = [
-  { label: "The OOS", href: "/#oos" },
-  { label: "Services", href: "/#services" },
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#founder" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about" },
 ];
 
 const mono: React.CSSProperties = {
@@ -36,14 +36,14 @@ export default function Nav() {
     >
       <nav
         style={{
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
-          justifyContent: "space-between",
           padding: "18px 6vw",
         }}
       >
         {/* Brand */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", justifySelf: "start" }}>
           <OragonLabsLogo size={34} />
           <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
             <span
@@ -74,8 +74,8 @@ export default function Nav() {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="ol-nav-links" style={{ display: "flex", gap: "32px" }}>
+        {/* Desktop links (page-centered) */}
+        <div className="ol-nav-links" style={{ justifySelf: "center", display: "flex", gap: "28px", whiteSpace: "nowrap" }}>
           {links.map((l) => (
             <Link key={l.href} href={l.href} style={{ ...mono, color: "#4a4a4a" }}>
               {l.label}
@@ -83,34 +83,35 @@ export default function Nav() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <Link
-          href="/#book"
-          className="ol-nav-cta"
-          style={{ ...mono, color: "#fb923c", border: "1px solid #f0c9a8", padding: "9px 16px", borderRadius: "999px" }}
-        >
-          Book a call
-        </Link>
+        {/* Right cluster: CTA + hamburger */}
+        <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "12px" }}>
+          <Link
+            href="/contact"
+            className="ol-nav-cta"
+            style={{ ...mono, color: "#fb923c", border: "1px solid #f0c9a8", padding: "9px 16px", borderRadius: "999px" }}
+          >
+            Get in touch
+          </Link>
 
-        {/* Mobile hamburger */}
-        <button
-          className="ol-nav-burger"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          style={{
-            display: "none",
-            flexDirection: "column",
-            gap: "5px",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "6px",
-          }}
-        >
-          {[0, 1, 2].map((i) => (
-            <span key={i} style={{ display: "block", width: "22px", height: "1.6px", background: "#1a1a1a" }} />
-          ))}
-        </button>
+          <button
+            className="ol-nav-burger"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            style={{
+              display: "none",
+              flexDirection: "column",
+              gap: "5px",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "6px",
+            }}
+          >
+            {[0, 1, 2].map((i) => (
+              <span key={i} style={{ display: "block", width: "22px", height: "1.6px", background: "#1a1a1a" }} />
+            ))}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -118,7 +119,7 @@ export default function Nav() {
         className="ol-nav-mobile"
         style={{
           display: "none",
-          maxHeight: open ? "320px" : "0",
+          maxHeight: open ? "360px" : "0",
           overflow: "hidden",
           transition: "max-height 0.3s ease",
           background: "rgba(255,255,255,0.98)",
@@ -131,14 +132,14 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <Link href="/#book" onClick={() => setOpen(false)} style={{ ...mono, color: "#fb923c" }}>
-            Book a call
+          <Link href="/contact" onClick={() => setOpen(false)} style={{ ...mono, color: "#fb923c" }}>
+            Get in touch
           </Link>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 760px) {
+        @media (max-width: 800px) {
           .ol-nav-links { display: none !important; }
           .ol-nav-cta   { display: none !important; }
           .ol-nav-burger { display: flex !important; }

@@ -26,6 +26,12 @@ export default function Services() {
             </div>
           ))}
         </Reveal>
+
+        <Reveal style={{ marginTop: "32px" }}>
+          <a href="/services" style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#fb923c", textDecoration: "none" }}>
+            See services and pricing →
+          </a>
+        </Reveal>
       </div>
 
       <style>{`

@@ -7,7 +7,12 @@ export default function Hero() {
     <section
       id="top"
       style={{
-        padding: "clamp(56px,9vw,96px) 6vw clamp(48px,7vw,72px)",
+        minHeight: "calc(100svh - 72px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "clamp(40px,6vw,72px) 6vw",
         background: "#f8f7f5",
         textAlign: "center",
       }}
@@ -75,7 +80,7 @@ export default function Hero() {
           margin: "0 auto 36px",
         }}
       >
-        Oragon Labs builds custom systems, integrated with AI, for Filipino businesses. We map your bottleneck before quoting anything, and you own every system we build, outright.
+        Oragon Labs is an AI-native software agency building custom operations systems for Filipino SMEs, fitted to how each business already works and delivered in days at a fraction of traditional development cost.
       </Reveal>
 
       {/* CTA row */}
@@ -91,7 +96,7 @@ export default function Hero() {
         }}
       >
         <a
-          href="#book"
+          href="/contact"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "12px",

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Reveal from "@/components/ui/Reveal";
 
 const stages = [
@@ -5,7 +8,6 @@ const stages = [
     n: "01",
     title: "The Bottleneck Map",
     body: "We find the single process draining your business the most, in a 30-minute call. Free, before anything is quoted or built.",
-    active: true,
   },
   {
     n: "02",
@@ -25,6 +27,13 @@ const stages = [
 ];
 
 export default function Oos() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setActive((a) => (a + 1) % stages.length), 2000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section id="oos" style={{ padding: "clamp(60px,8vw,92px) 6vw", background: "#fbfaf8" }}>
       <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
@@ -75,38 +84,56 @@ export default function Oos() {
         </Reveal>
 
         <Reveal style={{ position: "relative" }}>
-          <div className="ol-oos-line" style={{ position: "absolute", top: "9px", left: "4%", right: "4%", height: "2px", background: "#e5e0db" }} />
-          <div className="ol-oos-line" style={{ position: "absolute", top: "9px", left: "4%", width: "23%", height: "2px", background: "#fb923c" }} />
+          {/* Full track: from the first node's circle to the last node's circle */}
+          <div className="ol-oos-line" style={{ position: "absolute", top: "9px", left: "10px", right: "calc(25% - 28px)", height: "2px", background: "#e5e0db" }} />
+          {/* Orange progress: fills up to the active node */}
+          <div
+            className="ol-oos-line"
+            style={{
+              position: "absolute",
+              top: "9px",
+              left: "10px",
+              width: `calc(${active * 25}% + ${active * 6}px)`,
+              height: "2px",
+              background: "#fb923c",
+              transition: "width 0.6s cubic-bezier(.16,1,.3,1)",
+            }}
+          />
           <div className="ol-oos-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0,1fr))", gap: "24px" }}>
-            {stages.map((s) => (
-              <div key={s.n}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
-                  {s.active ? (
-                    <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: "#fb923c", boxShadow: "0 0 0 5px #fff1e7", display: "inline-block" }}>
-                      <span style={{ position: "absolute", inset: "-5px", borderRadius: "50%", background: "#fb923c", transformOrigin: "center", animation: "oRing 2.6s ease-out infinite" }} />
+            {stages.map((s, i) => {
+              const isActive = i === active;
+              const reached = i <= active;
+              return (
+                <div key={s.n}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
+                    {isActive ? (
+                      <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: "#fb923c", boxShadow: "0 0 0 5px #fff1e7", display: "inline-block" }}>
+                        <span style={{ position: "absolute", inset: "-5px", borderRadius: "50%", background: "#fb923c", transformOrigin: "center", animation: "oRing 2s ease-out infinite" }} />
+                      </span>
+                    ) : (
+                      <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: reached ? "#fb923c" : "#d8d2cb", display: "inline-block", transition: "background 0.4s ease" }} />
+                    )}
+                    <span
+                      style={{
+                        position: "relative",
+                        zIndex: 2,
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        letterSpacing: "0.08em",
+                        color: reached ? "#fb923c" : "#9a958e",
+                        background: "#fbfaf8",
+                        padding: "0 5px",
+                        transition: "color 0.4s ease",
+                      }}
+                    >
+                      {s.n}
                     </span>
-                  ) : (
-                    <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: "#d8d2cb", display: "inline-block" }} />
-                  )}
-                  <span
-                    style={{
-                      position: "relative",
-                      zIndex: 2,
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "11px",
-                      letterSpacing: "0.08em",
-                      color: s.active ? "#fb923c" : "#9a958e",
-                      background: s.active ? "transparent" : "#fbfaf8",
-                      padding: s.active ? 0 : "0 5px",
-                    }}
-                  >
-                    {s.n}
-                  </span>
+                  </div>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "19px", color: "#1a1a1a", margin: "0 0 8px" }}>{s.title}</h3>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.55, color: "#4a4a4a", margin: 0 }}>{s.body}</p>
                 </div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "19px", color: "#1a1a1a", margin: "0 0 8px" }}>{s.title}</h3>
-                <p style={{ fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.55, color: "#4a4a4a", margin: 0 }}>{s.body}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Reveal>
       </div>

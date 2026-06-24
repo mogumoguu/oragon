@@ -27,7 +27,7 @@ export default function Footer() {
               <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "18px", letterSpacing: "-0.02em", color: "#1a1a1a" }}>Oragon Labs</span>
             </div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.5, color: "#6b6b6b", margin: 0, maxWidth: "230px" }}>
-              Custom systems, integrated with AI, for Filipino businesses. Built to be owned, not rented.
+              An AI-native software agency building custom operations systems for Filipino SMEs. Built to be owned, not rented.
             </p>
           </div>
 
@@ -35,9 +35,9 @@ export default function Footer() {
             <div style={label}>Site</div>
             <div style={{ display: "grid", gap: "9px" }}>
               <Link href="/#oos" style={link}>The OOS</Link>
-              <Link href="/#services" style={link}>Services</Link>
-              <Link href="/#work" style={link}>Work</Link>
-              <Link href="/#founder" style={link}>About</Link>
+              <Link href="/services" style={link}>Services</Link>
+              <Link href="/services#work" style={link}>Work</Link>
+              <Link href="/about" style={link}>About</Link>
             </div>
           </div>
 
@@ -45,7 +45,7 @@ export default function Footer() {
             <div style={label}>Contact</div>
             <div style={{ display: "grid", gap: "9px" }}>
               <a href="mailto:support@oragon.com.ph" style={link}>support@oragon.com.ph</a>
-              <Link href="/#book" style={{ ...link, color: "#fb923c" }}>Book a free Bottleneck Map</Link>
+              <Link href="/contact" style={{ ...link, color: "#fb923c" }}>Book a free Bottleneck Map</Link>
             </div>
           </div>
 

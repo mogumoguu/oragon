@@ -27,7 +27,7 @@ export default function FounderNote() {
           as="p"
           style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.65, color: "#4a4a4a", margin: "0 0 18px" }}
         >
-          I am Miguel, 18, and I build every Oragon Labs project myself, from the full-stack apps to the AI workflows. No agency overhead, no junior dev handoffs. Oragon is a Bicolano word: fierce, brave, but still humble. That is the standard I hold every build to.
+          I am Miguel, 18, and I build every Oragon Labs project myself, from the full-stack apps to the AI workflows. No agency overhead, no junior dev handoffs. Oragon is a Bicolano word for someone brave, determined, and principled, who rises above challenges. That is the standard every build is held to.
         </Reveal>
 
         <Reveal style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "30px" }}>
@@ -36,22 +36,22 @@ export default function FounderNote() {
               width: "46px",
               height: "46px",
               borderRadius: "50%",
-              background: "repeating-linear-gradient(135deg,#f1eeeb,#f1eeeb 6px,#e9e4de 6px,#e9e4de 12px)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "var(--font-mono)",
-              fontSize: "13px",
-              fontWeight: 700,
-              color: "#fb923c",
+              backgroundImage: "url(/about-portrait.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center 16%",
+              border: "1px solid rgba(0,0,0,0.06)",
             }}
-          >
-            MI
-          </div>
+          />
           <div>
             <div style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px", color: "#1a1a1a" }}>Miguel Isorena</div>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#9a958e" }}>Founder, Oragon Labs</div>
           </div>
+        </Reveal>
+
+        <Reveal style={{ marginTop: "26px" }}>
+          <a href="/about" style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#fb923c", textDecoration: "none" }}>
+            More about Miguel →
+          </a>
         </Reveal>
       </div>
     </section>
