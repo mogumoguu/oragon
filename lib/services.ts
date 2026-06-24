@@ -2,7 +2,7 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: "pos" | "bookings" | "custom";
+  icon: "pos" | "bookings" | "websites" | "custom";
 }
 
 export const services: Service[] = [
@@ -10,15 +10,22 @@ export const services: Service[] = [
     id: "pos-sales",
     title: "POS + Sales Systems",
     description:
-      "Real-time inventory, smart stock alerts, AI sales forecasting. See SmartStock.",
+      "Real-time inventory, smart stock alerts, AI sales forecasting.",
     icon: "pos",
   },
   {
     id: "bookings",
     title: "Bookings",
     description:
-      "24/7 booking page, auto-confirmation, SMS reminders. See Oragon Bookings.",
+      "24/7 booking page, auto-confirmation, SMS reminders.",
     icon: "bookings",
+  },
+  {
+    id: "websites",
+    title: "Websites",
+    description:
+      "Fast, custom websites you own outright. Mobile-first, built to convert.",
+    icon: "websites",
   },
   {
     id: "custom",

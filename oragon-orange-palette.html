@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: #f8f7f5;
+    padding: 64px;
+    width: 900px;
+  }
+  .card {
+    background: #ffffff;
+    border: 1px solid #e5e0db;
+    border-radius: 20px;
+    padding: 56px;
+    box-shadow: 0 20px 60px rgba(20, 16, 14, 0.06);
+  }
+  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: #fb923c; }
+  h1 { font-size: 30px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.02em; }
+  .sub { font-size: 15px; color: #9a8f87; margin: 6px 0 44px 34px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .swatch { border-radius: 14px; overflow: hidden; border: 1px solid #ede9e3; }
+  .chip { height: 130px; display: flex; align-items: flex-end; padding: 16px; }
+  .meta { padding: 16px; background: #ffffff; }
+  .name { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .hex { font-size: 13px; color: #4a4a4a; font-family: "SF Mono", Menlo, monospace; margin-top: 4px; text-transform: uppercase; }
+  .tag { font-size: 11px; color: #ffffff; background: rgba(0,0,0,0.18); padding: 3px 9px; border-radius: 999px; font-weight: 600; }
+  .tag.dark { color: #1a1a1a; background: rgba(0,0,0,0.06); }
+  .footer { margin-top: 40px; font-size: 13px; color: #9a8f87; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="dot"></div>
+      <h1>Oragon — Orange Palette</h1>
+    </div>
+    <div class="sub">Primary brand accent system</div>
+
+    <div class="grid">
+      <div class="swatch">
+        <div class="chip" style="background:#fb923c;"><span class="tag">Primary</span></div>
+        <div class="meta"><div class="name">Accent</div><div class="hex">#fb923c</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#f97316;"><span class="tag">Hover</span></div>
+        <div class="meta"><div class="name">Accent Dim</div><div class="hex">#f97316</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#ea580c;"><span class="tag">Text</span></div>
+        <div class="meta"><div class="name">Accent Text</div><div class="hex">#ea580c</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:rgba(251,146,60,0.24);"><span class="tag dark">Glow</span></div>
+        <div class="meta"><div class="name">Accent Glow Strong</div><div class="hex">rgba(251,146,60,.24)</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:rgba(251,146,60,0.12);"><span class="tag dark">Glow</span></div>
+        <div class="meta"><div class="name">Accent Glow</div><div class="hex">rgba(251,146,60,.12)</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:linear-gradient(135deg,#fb923c,#ea580c);"><span class="tag">Gradient</span></div>
+        <div class="meta"><div class="name">Accent Gradient</div><div class="hex">#fb923c → #ea580c</div></div>
+      </div>
+    </div>
+
+    <div class="footer">oragon.com.ph · source: app/globals.css</div>
+  </div>
+</body>
+</html>

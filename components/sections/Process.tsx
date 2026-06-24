@@ -9,8 +9,8 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const steps = [
   {
     number: "01",
-    title: "The Leak Map",
-    description: "We diagnose your business and pinpoint the single process bleeding the most time or money. It is free, and it is yours to keep even if we never build a thing.",
+    title: "The Bottleneck Map",
+    description: "We diagnose your business and pinpoint the single bottleneck draining the most time or money. It is free, and it is yours to keep even if we never build a thing.",
   },
   {
     number: "02",

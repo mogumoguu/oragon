@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: #f8f7f5;
+    padding: 56px;
+    width: 1120px;
+  }
+  .sheet {
+    background: #ffffff;
+    border: 1px solid #e5e0db;
+    border-radius: 22px;
+    padding: 56px 56px 48px;
+    box-shadow: 0 24px 70px rgba(20, 16, 14, 0.07);
+  }
+  .head { display: flex; align-items: center; gap: 16px; }
+  .dot { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg,#fb923c,#ea580c); }
+  h1 { font-size: 32px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.02em; }
+  .sub { font-size: 15px; color: #9a8f87; margin: 8px 0 8px 36px; }
+
+  .section { margin-top: 44px; }
+  .sec-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #ea580c; margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .sec-label::after { content: ""; flex: 1; height: 1px; background: #ede9e3; }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+  .swatch { border-radius: 12px; overflow: hidden; border: 1px solid #ede9e3; }
+  .chip { height: 96px; display: flex; align-items: flex-end; padding: 12px; }
+  .meta { padding: 13px 14px; background: #ffffff; }
+  .name { font-size: 13.5px; font-weight: 600; color: #1a1a1a; }
+  .hex { font-size: 12px; color: #4a4a4a; font-family: "SF Mono", Menlo, monospace; margin-top: 3px; text-transform: uppercase; }
+  .role { font-size: 11.5px; color: #9a8f87; margin-top: 2px; }
+
+  .tag { font-size: 10.5px; padding: 3px 8px; border-radius: 999px; font-weight: 600; }
+  .tag.l { color: #ffffff; background: rgba(0,0,0,0.20); }
+  .tag.d { color: #1a1a1a; background: rgba(0,0,0,0.06); }
+
+  .footer { margin-top: 46px; padding-top: 22px; border-top: 1px solid #ede9e3;
+            font-size: 12.5px; color: #9a8f87; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="head"><div class="dot"></div><h1>Oragon — Brand Sheet</h1></div>
+    <div class="sub">Color system · source: app/globals.css</div>
+
+    <!-- BRAND ACCENT -->
+    <div class="section">
+      <div class="sec-label">Brand Accent · Orange</div>
+      <div class="grid grid-5">
+        <div class="swatch"><div class="chip" style="background:#fb923c"><span class="tag l">Primary</span></div>
+          <div class="meta"><div class="name">Accent</div><div class="hex">#fb923c</div><div class="role">Buttons, marks, links</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#f97316"><span class="tag l">Hover</span></div>
+          <div class="meta"><div class="name">Accent Dim</div><div class="hex">#f97316</div><div class="role">Hover / pressed</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#ea580c"><span class="tag l">Text</span></div>
+          <div class="meta"><div class="name">Accent Text</div><div class="hex">#ea580c</div><div class="role">Orange on white</div></div></div>
+        <div class="swatch"><div class="chip" style="background:rgba(251,146,60,0.24)"><span class="tag d">Glow</span></div>
+          <div class="meta"><div class="name">Glow Strong</div><div class="hex">rgba(251,146,60,.24)</div><div class="role">Focus / aura</div></div></div>
+        <div class="swatch"><div class="chip" style="background:rgba(251,146,60,0.12)"><span class="tag d">Glow</span></div>
+          <div class="meta"><div class="name">Glow</div><div class="hex">rgba(251,146,60,.12)</div><div class="role">Soft highlight</div></div></div>
+      </div>
+    </div>
+
+    <!-- NEUTRALS -->
+    <div class="section">
+      <div class="sec-label">Neutrals · Backgrounds & Borders</div>
+      <div class="grid grid-5">
+        <div class="swatch"><div class="chip" style="background:#ffffff"><span class="tag d">Base</span></div>
+          <div class="meta"><div class="name">BG Base</div><div class="hex">#ffffff</div><div class="role">Page background</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#f8f7f5"><span class="tag d">Surface</span></div>
+          <div class="meta"><div class="name">BG Surface</div><div class="hex">#f8f7f5</div><div class="role">Cards / sections</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#f1eeeb"><span class="tag d">Elevated</span></div>
+          <div class="meta"><div class="name">BG Elevated</div><div class="hex">#f1eeeb</div><div class="role">Raised surfaces</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#e5e0db"><span class="tag d">Border</span></div>
+          <div class="meta"><div class="name">Border</div><div class="hex">#e5e0db</div><div class="role">Dividers</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#ede9e3"><span class="tag d">Border</span></div>
+          <div class="meta"><div class="name">Border Subtle</div><div class="hex">#ede9e3</div><div class="role">Faint lines</div></div></div>
+      </div>
+    </div>
+
+    <!-- TEXT -->
+    <div class="section">
+      <div class="sec-label">Text</div>
+      <div class="grid">
+        <div class="swatch"><div class="chip" style="background:#1a1a1a"><span class="tag l">Primary</span></div>
+          <div class="meta"><div class="name">Text Primary</div><div class="hex">#1a1a1a</div><div class="role">Headings, body</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#4a4a4a"><span class="tag l">Secondary</span></div>
+          <div class="meta"><div class="name">Text Secondary</div><div class="hex">#4a4a4a</div><div class="role">Sub-copy</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#9a8f87"><span class="tag l">Muted</span></div>
+          <div class="meta"><div class="name">Text Muted</div><div class="hex">#9a8f87</div><div class="role">Captions, hints</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1e1a18"><span class="tag l">Nav</span></div>
+          <div class="meta"><div class="name">Nav Mobile BG</div><div class="hex">#1e1a18</div><div class="role">Dark nav base</div></div></div>
+      </div>
+    </div>
+
+    <!-- AURORA -->
+    <div class="section">
+      <div class="sec-label">Aurora Accents · Cool Gradient Shimmer</div>
+      <div class="grid grid-5">
+        <div class="swatch"><div class="chip" style="background:#3b82f6"><span class="tag l">Blue</span></div>
+          <div class="meta"><div class="name">Blue 500</div><div class="hex">#3b82f6</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#60a5fa"><span class="tag l">Blue</span></div>
+          <div class="meta"><div class="name">Blue 400</div><div class="hex">#60a5fa</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#93c5fd"><span class="tag d">Blue</span></div>
+          <div class="meta"><div class="name">Blue 300</div><div class="hex">#93c5fd</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#a5b4fc"><span class="tag d">Indigo</span></div>
+          <div class="meta"><div class="name">Indigo 300</div><div class="hex">#a5b4fc</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#ddd6fe"><span class="tag d">Violet</span></div>
+          <div class="meta"><div class="name">Violet 200</div><div class="hex">#ddd6fe</div></div></div>
+      </div>
+    </div>
+
+    <div class="footer"><span>oragon.com.ph</span><span>Light theme · orange on warm white · dark nav</span></div>
+  </div>
+</body>
+</html>

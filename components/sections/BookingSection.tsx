@@ -1,20 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
-import RevealBox from "@/components/ui/RevealBox";
+import Reveal from "@/components/ui/Reveal";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-// Cal.com inline embed for the 30-min discovery call.
-// Live at cal.com/miguel-isorena/discovery-call (wired up 2026-05-18).
+// Cal.com inline embed for the 30-min discovery call (the Bottleneck Map).
 const CAL_LINK = "miguel-isorena/discovery-call";
 
 export default function BookingSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   useEffect(() => {
     (async () => {
       const cal = await getCalApi({ namespace: "discovery" });
@@ -31,102 +24,40 @@ export default function BookingSection() {
   }, []);
 
   return (
-    <section
-      id="booking"
-      style={{
-        padding: "6rem 1.5rem",
-        background: "var(--bg-surface)",
-        borderTop: "1px solid var(--border-subtle)",
-      }}
-    >
-      <div className="max-w-4xl mx-auto" ref={ref}>
-        {/* Header */}
-        <div style={{ marginBottom: "2.5rem", textAlign: "center" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              fontWeight: 500,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "var(--accent-text)",
-              marginBottom: "0.75rem",
-            }}
-          >
-            <RevealBox inView={inView} delay={0}>
-              Get your free Leak Map
-            </RevealBox>
+    <section id="book" style={{ padding: "clamp(60px,8vw,92px) 6vw", background: "#f1eeeb" }}>
+      <div
+        style={{
+          maxWidth: "1180px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))",
+          gap: "clamp(32px,5vw,64px)",
+          alignItems: "center",
+        }}
+      >
+        <Reveal>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#fb923c", marginBottom: "14px" }}>
+            Book the map
+          </div>
+          <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(32px,4.6vw,46px)", lineHeight: 1.0, letterSpacing: "-0.03em", color: "#1a1a1a", margin: "0 0 18px" }}>
+            30 minutes. Free. No pitch.
+          </h2>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.6, color: "#4a4a4a", margin: "0 0 22px", maxWidth: "420px" }}>
+            We walk through your business, find the highest-leverage thing to automate, and tell you straight up whether we can help. No slides, no obligation.
           </p>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, ease, delay: 0.1 }}
-            style={{ color: "var(--text-primary)", margin: "0 0 1rem" }}
-          >
-            Your Leak Map. 30 minutes. Free.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease, delay: 0.2 }}
-            style={{
-              fontSize: "1rem",
-              color: "var(--text-secondary)",
-              maxWidth: "560px",
-              margin: "0 auto",
-            }}
-          >
-            We walk through your business, pinpoint the one process bleeding the most, and tell you straight up if we can help. That is your Leak Map, free.
-          </motion.p>
-        </div>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.04em", color: "#6b6b6b" }}>
+            Or email <a href="mailto:support@oragon.com.ph" style={{ color: "#fb923c", textDecoration: "none" }}>support@oragon.com.ph</a>
+          </div>
+        </Reveal>
 
-        {/* Cal.com embed */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease, delay: 0.3 }}
-          style={{
-            background: "var(--bg-base)",
-            border: "1px solid var(--border)",
-            borderRadius: "12px",
-            padding: "1rem",
-            minHeight: "600px",
-            overflow: "hidden",
-          }}
-        >
+        <Reveal style={{ background: "#fff", border: "1px solid #e5e0db", borderRadius: "10px", padding: "14px" }}>
           <Cal
             namespace="discovery"
             calLink={CAL_LINK}
-            style={{ width: "100%", height: "100%", minHeight: "580px", overflow: "scroll" }}
+            style={{ width: "100%", height: "100%", minHeight: "520px", overflow: "scroll", borderRadius: "6px" }}
             config={{ layout: "month_view" }}
           />
-        </motion.div>
-
-        {/* Fallback link */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, ease, delay: 0.45 }}
-          style={{
-            textAlign: "center",
-            marginTop: "1.5rem",
-            fontSize: "0.85rem",
-            color: "var(--text-secondary)",
-          }}
-        >
-          Or email{" "}
-          <a
-            href="mailto:support@oragon.com.ph"
-            style={{
-              color: "var(--accent-text)",
-              textDecoration: "underline",
-              textDecorationColor: "var(--border)",
-              textUnderlineOffset: "3px",
-            }}
-          >
-            support@oragon.com.ph
-          </a>
-        </motion.p>
+        </Reveal>
       </div>
     </section>
   );

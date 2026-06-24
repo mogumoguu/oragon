@@ -1,117 +1,59 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import RevealBox from "@/components/ui/RevealBox";
-
-const ease = [0.22, 1, 0.36, 1] as const;
+import Reveal from "@/components/ui/Reveal";
 
 export default function FounderNote() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section
-      style={{
-        padding: "6rem 1.5rem",
-        background: "transparent",
-        borderTop: "1px solid var(--border-subtle)",
-      }}
-    >
-      <div className="max-w-3xl mx-auto" ref={ref}>
-        {/* Eyebrow */}
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.72rem",
-            fontWeight: 500,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "var(--accent-text)",
-            marginBottom: "1.5rem",
-          }}
-        >
-          <RevealBox inView={inView} delay={0}>
-            A note from the founder
-          </RevealBox>
-        </p>
+    <section id="founder" style={{ padding: "clamp(60px,8vw,92px) 6vw", background: "#fff" }}>
+      <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+        <Reveal style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#fb923c", marginBottom: "26px" }}>
+          A note from the founder
+        </Reveal>
 
-        {/* Note body */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, ease, delay: 0.15 }}
+        <Reveal
+          as="p"
           style={{
-            display: "flex",
-            gap: "1.5rem",
-            alignItems: "flex-start",
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            fontSize: "clamp(22px,3.2vw,30px)",
+            lineHeight: 1.3,
+            letterSpacing: "-0.02em",
+            color: "#1a1a1a",
+            margin: "0 0 22px",
           }}
-          className="founder-note-row"
         >
-          {/* Avatar */}
+          &ldquo;I kept seeing Filipino businesses drowning in manual work that software could fix. That is the only reason Oragon Labs exists.&rdquo;
+        </Reveal>
+
+        <Reveal
+          as="p"
+          style={{ fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.65, color: "#4a4a4a", margin: "0 0 18px" }}
+        >
+          I am Miguel, 18, and I build every Oragon Labs project myself, from the full-stack apps to the AI workflows. No agency overhead, no junior dev handoffs. Oragon is a Bicolano word: fierce, brave, but still humble. That is the standard I hold every build to.
+        </Reveal>
+
+        <Reveal style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "30px" }}>
           <div
             style={{
-              width: "72px",
-              height: "72px",
+              width: "46px",
+              height: "46px",
               borderRadius: "50%",
-              background: "var(--bg-elevated)",
-              border: "2px solid var(--border)",
+              background: "repeating-linear-gradient(135deg,#f1eeeb,#f1eeeb 6px,#e9e4de 6px,#e9e4de 12px)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              flexShrink: 0,
+              fontFamily: "var(--font-mono)",
+              fontSize: "13px",
+              fontWeight: 700,
+              color: "#fb923c",
             }}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "1.1rem",
-                color: "var(--accent-text)",
-                letterSpacing: "-0.04em",
-              }}
-            >
-              MI
-            </span>
+            MI
           </div>
-
-          {/* Quote block */}
-          <div style={{ flex: 1 }}>
-            <p
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "1.1rem",
-                lineHeight: 1.7,
-                color: "var(--text-primary)",
-                margin: "0 0 1.25rem",
-                fontWeight: 400,
-              }}
-            >
-              I&apos;m Miguel. 18, based in the Philippines, building Oragon as a solo founder. Every project I take on, I build personally. No agency overhead, no junior dev handoffs. Book a call and let&apos;s see what we can automate for you.
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.78rem",
-                color: "var(--text-secondary)",
-                margin: 0,
-                letterSpacing: "0.04em",
-              }}
-            >
-              — Miguel Isorena, Founder
-            </p>
+          <div>
+            <div style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px", color: "#1a1a1a" }}>Miguel Isorena</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#9a958e" }}>Founder, Oragon Labs</div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
-
-      <style>{`
-        @media (max-width: 540px) {
-          .founder-note-row {
-            flex-direction: column !important;
-            gap: 1.25rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

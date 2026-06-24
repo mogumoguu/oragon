@@ -1,28 +1,25 @@
-import Hero            from "@/components/sections/Hero";
-import Proof           from "@/components/sections/Proof";
-import Process         from "@/components/sections/Process";
-import Differentiation from "@/components/sections/Differentiation";
-import Services        from "@/components/sections/Services";
-import BookingSection  from "@/components/sections/BookingSection";
-import FounderNote     from "@/components/sections/FounderNote";
+import Hero              from "@/components/sections/Hero";
+import BottleneckDivider from "@/components/sections/BottleneckDivider";
+import Oos               from "@/components/sections/Oos";
+import Why               from "@/components/sections/Why";
+import Services          from "@/components/sections/Services";
+import Work              from "@/components/sections/Work";
+import BookingSection    from "@/components/sections/BookingSection";
+import FounderNote       from "@/components/sections/FounderNote";
+import Footer            from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main style={{ paddingTop: "4rem", padding: "4rem 0 2rem" }}>
+    <main>
       <Hero />
-      <Proof />
-      <Process />
-      <Differentiation />
+      <BottleneckDivider />
+      <Oos />
+      <Why />
       <Services />
+      <Work />
       <BookingSection />
       <FounderNote />
-      <style>{`
-        @media (max-width: 640px) {
-          main {
-            padding: 4rem 0 1rem !important;
-          }
-        }
-      `}</style>
+      <Footer />
     </main>
   );
 }

@@ -16,8 +16,8 @@ const points = [
     body: "Stay on a light retainer only if you want to. At any point you can take the keys and self-host. Your business, your call.",
   },
   {
-    title: "The Leak Map is free",
-    body: "You see exactly what is bleeding, and what we would build to fix it, before you spend a single peso.",
+    title: "The Bottleneck Map is free",
+    body: "You see exactly what is draining you, and what we would build to fix it, before you spend a single peso.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function Differentiation() {
           }}
         >
           Most agencies quote you a build.{" "}
-          <span style={{ color: "var(--accent)" }}>We find the leak first.</span>
+          <span style={{ color: "var(--accent)" }}>We find the bottleneck first.</span>
         </motion.h2>
 
         <motion.p

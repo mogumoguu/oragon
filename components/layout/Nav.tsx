@@ -1,203 +1,151 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import OragonLogo from "@/components/ui/OragonLogo";
+import OragonLabsLogo from "@/components/ui/OragonLabsLogo";
 
 const links = [
-  { label: "Services",     href: "/#services" },
-  { label: "For clients",  href: "/clients" },
-  { label: "About",        href: "/about" },
-  { label: "Vision",       href: "/vision" },
-  { label: "Contact",      href: "/contact" },
+  { label: "The OOS", href: "/#oos" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#founder" },
 ];
 
-function isActive(href: string, pathname: string): boolean {
-  // Anchor-only links (e.g., "/#services") never get "active" state
-  if (href.startsWith("/#") || href === "/") return false;
-  const linkPath = href.split("#")[0].split("?")[0];
-  return pathname === linkPath;
-}
-
-function NavCTA({ onClick }: { onClick?: () => void }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <Link
-      href="/contact"
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.5rem",
-        fontFamily: "var(--font-mono)",
-        fontSize: "0.75rem",
-        fontWeight: 500,
-        letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        textDecoration: "none",
-        padding: "0.55rem 1.1rem",
-        borderRadius: "3px",
-        border: "1px solid rgba(251,146,60,0.6)",
-        background: hovered ? "#fb923c" : "transparent",
-        color: !hovered ? "#fb923c" : "#ffffff",
-        transition: "all 0.2s ease",
-      }}
-    >
-      Work With Us
-    </Link>
-  );
-}
+const mono: React.CSSProperties = {
+  fontFamily: "var(--font-mono)",
+  fontSize: "11px",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  textDecoration: "none",
+};
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const linkColor      = "rgba(30,24,20,0.65)";
-  const linkHoverColor = "#1a1a1a";
-  const hamburgerColor = "#1a1a1a";
+  const [open, setOpen] = useState(false);
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(255, 255, 255, 0.96)" : "rgba(255, 255, 255, 0.80)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        borderBottom: scrolled
-          ? "1px solid rgba(0,0,0,0.08)"
-          : "1px solid transparent",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "rgba(255,255,255,0.86)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+        borderBottom: "1px solid #f1eeeb",
       }}
     >
-      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="animate-fade-up" style={{ textDecoration: "none" }}>
-          <OragonLogo size={28} showWordmark={true} variant="light" />
+      <nav
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "18px 6vw",
+        }}
+      >
+        {/* Brand */}
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+          <OragonLabsLogo size={34} />
+          <span>
+            <span
+              style={{
+                display: "block",
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "19px",
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+                color: "#1a1a1a",
+              }}
+            >
+              oragon labs
+            </span>
+            <span
+              style={{
+                display: "block",
+                fontFamily: "var(--font-mono)",
+                fontSize: "8px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#9a958e",
+                marginTop: "3px",
+              }}
+            >
+              Automation · Systems
+            </span>
+          </span>
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0 animate-fade-up delay-2">
-          {links.map((link) => {
-            const active = isActive(link.href, pathname);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.75rem",
-                    fontWeight: active ? 700 : 500,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: active ? linkHoverColor : linkColor,
-                    textDecoration: "none",
-                    transition: "color 0.2s ease",
-                    borderBottom: active
-                      ? "2px solid #fb923c"
-                      : "2px solid transparent",
-                    paddingBottom: "3px",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!active)
-                      (e.currentTarget as HTMLElement).style.color = linkHoverColor;
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active)
-                      (e.currentTarget as HTMLElement).style.color = linkColor;
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-          <li>
-            <NavCTA />
-          </li>
-        </ul>
+        <div className="ol-nav-links" style={{ display: "flex", gap: "32px" }}>
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} style={{ ...mono, color: "#4a4a4a" }}>
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        {/* Desktop CTA */}
+        <Link
+          href="/#book"
+          className="ol-nav-cta"
+          style={{ ...mono, color: "#fb923c", border: "1px solid #f0c9a8", padding: "9px 16px", borderRadius: "999px" }}
+        >
+          Book a call
+        </Link>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="ol-nav-burger"
+          onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
-          style={{ background: "none", border: "none", cursor: "pointer" }}
+          style={{
+            display: "none",
+            flexDirection: "column",
+            gap: "5px",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "6px",
+          }}
         >
           {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: "block",
-                width: "22px",
-                height: "1.5px",
-                background: hamburgerColor,
-                transition: "all 0.25s ease",
-                transform:
-                  menuOpen && i === 0
-                    ? "translateY(6px) rotate(45deg)"
-                    : menuOpen && i === 2
-                    ? "translateY(-6px) rotate(-45deg)"
-                    : menuOpen && i === 1
-                    ? "scaleX(0)"
-                    : "none",
-              }}
-            />
+            <span key={i} style={{ display: "block", width: "22px", height: "1.6px", background: "#1a1a1a" }} />
           ))}
         </button>
       </nav>
 
       {/* Mobile menu */}
       <div
+        className="ol-nav-mobile"
         style={{
-          maxHeight: menuOpen ? "400px" : "0",
+          display: "none",
+          maxHeight: open ? "320px" : "0",
           overflow: "hidden",
           transition: "max-height 0.3s ease",
-          borderTop: menuOpen ? "1px solid rgba(0,0,0,0.08)" : "none",
           background: "rgba(255,255,255,0.98)",
+          borderTop: open ? "1px solid #f1eeeb" : "1px solid transparent",
         }}
       >
-        <ul className="list-none m-0 p-0 flex flex-col px-6 py-4 gap-4">
-          {links.map((link) => {
-            const active = isActive(link.href, pathname);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.8rem",
-                    fontWeight: active ? 700 : 500,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: active ? "#1a1a1a" : "rgba(30,24,20,0.75)",
-                    textDecoration: "none",
-                    display: "block",
-                    borderLeft: active
-                      ? "2px solid #fb923c"
-                      : "2px solid transparent",
-                    paddingLeft: "0.75rem",
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-          <li>
-            <NavCTA onClick={() => setMenuOpen(false)} />
-          </li>
-        </ul>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "18px 6vw" }}>
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ ...mono, color: "#4a4a4a" }}>
+              {l.label}
+            </Link>
+          ))}
+          <Link href="/#book" onClick={() => setOpen(false)} style={{ ...mono, color: "#fb923c" }}>
+            Book a call
+          </Link>
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 760px) {
+          .ol-nav-links { display: none !important; }
+          .ol-nav-cta   { display: none !important; }
+          .ol-nav-burger { display: flex !important; }
+          .ol-nav-mobile { display: block !important; }
+        }
+      `}</style>
     </header>
   );
 }

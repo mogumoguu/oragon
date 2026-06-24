@@ -21,6 +21,10 @@
   --accent-glow-strong: rgba(251, 146, 60, 0.24);
   --accent-text:        #ea580c;
 
+  /* Oragon Labs redesign brand orange */
+  --ol-accent:      #fb923c;  /* brand orange: fills, nodes, the signature device */
+  --ol-accent-deep: #ea580c;  /* darker accent: orange text + white-on-orange CTAs */
+
   --nav-bg-scrolled: rgba(20, 16, 14, 0.97);
   --nav-bg-top:      rgba(20, 16, 14, 0.88);
   --nav-mobile-bg:   #1e1a18;
@@ -176,6 +180,11 @@ p {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-8px); }
 }
+
+/* ─── Oragon Labs redesign: signature device animations ─── */
+@keyframes oPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.18); opacity: .75; } }
+@keyframes oRing  { 0% { transform: scale(.6); opacity: .55; } 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes oFlow  { to { stroke-dashoffset: -40; } }
 
 .animate-fade-up {
   opacity: 0;

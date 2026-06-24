@@ -3,11 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // /projects superseded by the richer /clients page (2026-05-21).
-      // 301 so old social posts / search results route forward cleanly.
+      // /clients + /projects condensed into the homepage #work section (2026-06-24).
+      // 301 so old links / search results route forward cleanly.
+      {
+        source: "/clients",
+        destination: "/#work",
+        permanent: true,
+      },
       {
         source: "/projects",
-        destination: "/clients",
+        destination: "/#work",
         permanent: true,
       },
     ];
