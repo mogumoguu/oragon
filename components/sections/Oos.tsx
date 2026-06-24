@@ -107,9 +107,7 @@ export default function Oos() {
                 <div key={s.n}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
                     {isActive ? (
-                      <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: "#fb923c", boxShadow: "0 0 0 5px #fff1e7", display: "inline-block" }}>
-                        <span style={{ position: "absolute", inset: "-5px", borderRadius: "50%", background: "#fb923c", transformOrigin: "center", animation: "oRing 2s ease-out infinite" }} />
-                      </span>
+                      <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: "#fb923c", boxShadow: "0 0 0 5px #fff1e7", display: "inline-block", transition: "box-shadow 0.4s ease" }} />
                     ) : (
                       <span style={{ position: "relative", zIndex: 2, width: "20px", height: "20px", borderRadius: "50%", background: reached ? "#fb923c" : "#d8d2cb", display: "inline-block", transition: "background 0.4s ease" }} />
                     )}
