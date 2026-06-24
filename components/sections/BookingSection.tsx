@@ -51,12 +51,14 @@ export default function BookingSection() {
         </Reveal>
 
         <Reveal style={{ background: "#fff", border: "1px solid #e5e0db", borderRadius: "10px", padding: "14px" }}>
-          <Cal
-            namespace="discovery"
-            calLink={CAL_LINK}
-            style={{ width: "100%", height: "100%", minHeight: "520px", overflow: "scroll", borderRadius: "6px" }}
-            config={{ layout: "month_view" }}
-          />
+          <div style={{ height: "600px", overflow: "auto", borderRadius: "6px" }}>
+            <Cal
+              namespace="discovery"
+              calLink={CAL_LINK}
+              style={{ width: "100%", border: "none" }}
+              config={{ layout: "month_view", theme: "light" }}
+            />
+          </div>
         </Reveal>
       </div>
     </section>

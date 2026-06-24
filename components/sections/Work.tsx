@@ -22,6 +22,13 @@ const work = [
     desc: "A custom storefront and order flow for a local maker.",
     shot: "Vero storefront",
   },
+  {
+    name: "ARC Mobility",
+    href: "https://nano-arc-mobility.vercel.app",
+    label: "nano-arc-mobility.vercel.app",
+    desc: "A launch site and waitlist for NANO, a foldable mobility crutch.",
+    shot: "ARC Mobility screenshot",
+  },
 ];
 
 const stripe = "repeating-linear-gradient(135deg,#f3f0ec,#f3f0ec 11px,#eee9e3 11px,#eee9e3 22px)";

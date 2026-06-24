@@ -75,7 +75,7 @@ export default function Hero() {
           margin: "0 auto 36px",
         }}
       >
-        Oragon Labs builds custom automation and AI for Filipino businesses. We map your bottleneck before quoting anything, and you own every system we build, outright.
+        Oragon Labs builds custom systems, integrated with AI, for Filipino businesses. We map your bottleneck before quoting anything, and you own every system we build, outright.
       </Reveal>
 
       {/* CTA row */}

@@ -45,10 +45,9 @@ export default function Nav() {
         {/* Brand */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
           <OragonLabsLogo size={34} />
-          <span>
+          <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "flex-start" }}>
             <span
               style={{
-                display: "block",
                 fontFamily: "var(--font-display)",
                 fontWeight: 800,
                 fontSize: "19px",
@@ -57,20 +56,20 @@ export default function Nav() {
                 color: "#1a1a1a",
               }}
             >
-              oragon labs
+              Oragon Labs
             </span>
             <span
               style={{
-                display: "block",
                 fontFamily: "var(--font-mono)",
                 fontSize: "8px",
-                letterSpacing: "0.18em",
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color: "#9a958e",
-                marginTop: "3px",
+                lineHeight: 1.3,
+                marginTop: "5px",
               }}
             >
-              Automation · Systems
+              Systems · Automation · Websites
             </span>
           </span>
         </Link>

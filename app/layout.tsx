@@ -31,9 +31,9 @@ const russoOne = Russo_One({
 });
 
 export const metadata: Metadata = {
-  title: "Oragon Labs — Custom automation & AI for Filipino businesses",
+  title: "Oragon Labs",
   description:
-    "Oragon Labs builds custom automation and AI for Filipino businesses. We map your bottleneck before quoting anything, and you own every system we build, outright. The first Bottleneck Map is free.",
+    "Oragon Labs builds custom systems, integrated with AI, for Filipino businesses. We map your bottleneck before quoting anything, and you own every system we build, outright. The first Bottleneck Map is free.",
 };
 
 export default function RootLayout({

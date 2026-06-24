@@ -24,10 +24,10 @@ export default function Footer() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "11px", marginBottom: "14px" }}>
               <OragonLabsLogo size={30} />
-              <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "18px", letterSpacing: "-0.02em", color: "#1a1a1a" }}>oragon labs</span>
+              <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "18px", letterSpacing: "-0.02em", color: "#1a1a1a" }}>Oragon Labs</span>
             </div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.5, color: "#6b6b6b", margin: 0, maxWidth: "230px" }}>
-              Custom automation and AI for Filipino businesses. Built to be owned, not rented.
+              Custom systems, integrated with AI, for Filipino businesses. Built to be owned, not rented.
             </p>
           </div>
 
