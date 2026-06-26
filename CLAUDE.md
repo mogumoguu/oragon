@@ -1,8 +1,8 @@
 @AGENTS.md
 
-# ORAGON Website
+# Oragon Labs Website
 
-Agency site for ORAGON, a Filipino automation & AI agency built solo by Miguel Isorena (Founder).
+Agency site for Oragon Labs, a Filipino automation & AI agency built solo by Miguel Isorena (Founder).
 
 ## Stack
 - **Next.js 16.2.2** — App Router, React 19
@@ -16,11 +16,10 @@ Agency site for ORAGON, a Filipino automation & AI agency built solo by Miguel I
 |---|---|
 | `/` | `app/page.tsx` |
 | `/about` | `app/about/page.tsx` |
-| `/clients` | `app/clients/page.tsx` |
-| `/vision` | `app/vision/page.tsx` |
+| `/services` | `app/services/page.tsx` |
 | `/contact` | `app/contact/page.tsx` |
 
-`/projects` was deleted on 2026-05-21 (superseded by the richer `/clients` page). A 301 redirect lives in `next.config.ts` to keep any old social/inbound links routing forward.
+`/projects` was deleted on 2026-05-21. A 301 redirect lives in `next.config.ts` to keep any old social/inbound links routing forward.
 
 ## Theme & Design Tokens (`app/globals.css`)
 Light theme, white base, pastel orange accent.
@@ -58,7 +57,7 @@ About, Clients, Vision, and Contact pages remain as standalone routes.
 
 ### Sections (current homepage)
 - `Hero.tsx` — Uses `<AuroraBackground>` as wrapper. Headline "I build AI automation that actually ships." Single CTA: "Book a call" scrolling to booking section.
-- `Proof.tsx` — Single line: "Already built: SmartStock · Oragon Bookings" (linked to canonical demo URLs that match `/clients`). School App + Dormhunter PH were soft-archived 2026-06-07 (removed from the site to narrow focus; deployments still live).
+- `Proof.tsx` — Single line: "Already built: SmartStock · Oragon Labs Bookings" (linked to canonical demo URLs). School App + Dormhunter PH were soft-archived 2026-06-07 (removed from the site to narrow focus; deployments still live).
 - `Services.tsx` — Transparent background. Three cards from `lib/services.ts`: POS+Sales, Bookings, Custom Workflows.
 - `BookingSection.tsx` — Cal.com inline embed for 30-min discovery call. Fallback link: support@oragon.com.ph.
 - `FounderNote.tsx` — Founder note from Miguel.
