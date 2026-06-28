@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/sections/ContactForm";
 import SocialGrid from "@/components/ui/SocialGrid";
-import SocialEmbeds from "@/components/sections/SocialEmbeds";
 import Footer from "@/components/sections/Footer";
 import { socials } from "@/lib/socials";
 
@@ -25,15 +24,6 @@ const bodyText: React.CSSProperties = {
   fontSize: "16px",
   lineHeight: 1.65,
   color: "#4a4a4a",
-};
-
-const h2: React.CSSProperties = {
-  fontFamily: "var(--font-display)",
-  fontWeight: 800,
-  fontSize: "clamp(26px,3.8vw,38px)",
-  lineHeight: 1.1,
-  letterSpacing: "-0.03em",
-  color: "#1a1a1a",
 };
 
 export default function ContactPage() {
@@ -75,15 +65,6 @@ export default function ContactPage() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* Latest posts (curated, placeholder) */}
-      <section style={{ padding: "clamp(48px,6vw,72px) 6vw", background: "#f8f7f5", borderTop: "1px solid #ece7e1" }}>
-        <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
-          <Reveal style={{ ...label, marginBottom: "10px" }}>Latest posts</Reveal>
-          <Reveal as="h2" delay={0.05} style={{ ...h2, margin: "0 0 26px" }}>Fresh from the feed.</Reveal>
-          <Reveal><SocialEmbeds /></Reveal>
         </div>
       </section>
 
