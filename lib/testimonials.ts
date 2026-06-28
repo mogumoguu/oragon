@@ -8,24 +8,11 @@ export type Testimonial = {
 
 export const testimonials: Testimonial[] = [
   {
-    id: "testimonial-1",
-    quote: "ORAGON completely transformed how our team handles data entry. What used to take us hours every week is now fully automated. The ROI was immediate.",
-    name: "Alex Rivera",
-    title: "Operations Manager",
-    company: "Brightline Co.",
-  },
-  {
-    id: "testimonial-2",
-    quote: "Miguel built our client portal from scratch in record time. The quality was exceptional — clean code, fast performance, and exactly what we asked for.",
-    name: "Sarah Chen",
+    id: "vero-denim-bags",
+    quote:
+      "A heartfelt thank you to Miguel of Oragon for creating the new website of Vero Denim Bags. You beautifully captured the heart and identity of our enterprise through thoughtfully selected videos, photos, and storytelling that truly reflect who we are and what we stand for. The website not only showcases our products but also allows visitors to connect with our mission and the impact behind every bag. Thank you, Miguel, for your creativity, dedication, and this wonderful piece of work. We are truly grateful!",
+    name: "Veronica Tabrilla",
     title: "Founder & CEO",
-    company: "Vantage Studio",
-  },
-  {
-    id: "testimonial-3",
-    quote: "We needed an AI integration that actually worked in our workflow, not just a demo. ORAGON delivered a real solution that our whole team uses every day.",
-    name: "James Okoro",
-    title: "Head of Product",
-    company: "Pulseware",
+    company: "Vero Denim Bags",
   },
 ];

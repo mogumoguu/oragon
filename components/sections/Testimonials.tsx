@@ -47,14 +47,24 @@ export default function Testimonials() {
           What clients say.
         </motion.h2>
 
-        {/* Cards grid */}
+        {/* Cards grid (single testimonial renders as a centered featured card) */}
         <div
-          className="testimonials-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.25rem",
-          }}
+          className={testimonials.length === 1 ? undefined : "testimonials-grid"}
+          style={
+            testimonials.length === 1
+              ? {
+                  display: "grid",
+                  gridTemplateColumns: "1fr",
+                  maxWidth: "640px",
+                  margin: "0 auto",
+                  gap: "1.25rem",
+                }
+              : {
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "1.25rem",
+                }
+          }
         >
           {testimonials.map((t, i) => (
             <motion.div
