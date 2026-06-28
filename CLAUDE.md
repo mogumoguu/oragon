@@ -38,9 +38,11 @@ Color aliases (`--blue-500`, `--indigo-300`, etc.) for the aurora component are 
 `html` background is plain `#ffffff` — no dot grid, no gradients.
 
 ## Page Structure (`app/page.tsx`)
-Home page renders: `Hero → Proof → Services → BookingSection → FounderNote → Contact`
-(Rebuilt 2026-05-18 per `MI OS/02-build/plans/2026-05-18-oragon-site-rebuild-spec.md`.)
-About, Clients, Vision, and Contact pages remain as standalone routes.
+Home page renders: `Hero → Oos → Why → Services → Work → Testimonials → FounderNote → ContactCTA → Footer`
+(Oragon Labs multi-page rebuild 2026-06-24; the Testimonials section was wired in 2026-06-28 with the first real client quote, Vero.)
+About, Services, and Contact remain as standalone routes (see the Routes table above).
+
+> Note: the per-component descriptions below predate the 2026-06-24 rebuild and are partially stale (the section list and some component names changed). Verify against source; a full refresh is pending.
 
 ## Key Components
 
@@ -63,8 +65,8 @@ About, Clients, Vision, and Contact pages remain as standalone routes.
 - `FounderNote.tsx` — Founder note from Miguel.
 - `Contact.tsx` — `bg-surface` cream background. Demoted to fallback path.
 
-### Sections (dead code — kept in repo but not imported)
-- `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Testimonials.tsx`, `Skills.tsx`
+### Sections (not imported by the current homepage)
+- `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Skills.tsx` (this list may be stale post-rebuild; verify against `app/page.tsx` imports). `Testimonials.tsx` is now LIVE (imported as of 2026-06-28).
 
 ## Data (`lib/`)
 - `lib/services.ts` — Service card data.
