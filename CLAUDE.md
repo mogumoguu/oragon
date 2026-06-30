@@ -18,6 +18,7 @@ Agency site for Oragon Labs, a Filipino automation & AI agency built solo by Mig
 | `/about` | `app/about/page.tsx` |
 | `/services` | `app/services/page.tsx` |
 | `/contact` | `app/contact/page.tsx` |
+| `/share-your-experience` | `app/share-your-experience/page.tsx` (client testimonial submission form; not in nav) |
 
 `/projects` was deleted on 2026-05-21. A 301 redirect lives in `next.config.ts` to keep any old social/inbound links routing forward.
 
@@ -69,9 +70,16 @@ About, Services, and Contact remain as standalone routes (see the Routes table a
 - `Stats.tsx`, `Process.tsx`, `CTA.tsx`, `WhoWeServe.tsx`, `About.tsx`, `Skills.tsx` (this list may be stale post-rebuild; verify against `app/page.tsx` imports). `Testimonials.tsx` is now LIVE (imported as of 2026-06-28).
 
 ## Data (`lib/`)
+- `lib/testimonials.ts` — Testimonial data + `Testimonial` type. Includes a `featured` flag; the homepage (`Testimonials.tsx`) renders only featured testimonials, capped at 3.
 - `lib/services.ts` — Service card data.
 - `lib/socials.ts` — LinkedIn set to `linkedin.com/company/oragon`.
 - `lib/utils.ts` — `cn()` helper (clsx + tailwind-merge).
+
+## Testimonials (submission + curation)
+- `Testimonials.tsx` renders only `featured` testimonials, capped at 3 (extra entries stay hidden until flagged `featured`).
+- Clients submit via the form at `/share-your-experience` (`components/sections/TestimonialForm.tsx`): quote/name/consent required, optional title/company/email, hidden honeypot for spam. Reached two ways: a direct link Miguel sends after a job, and a subtle "Share your experience" link under the homepage testimonials.
+- `app/api/testimonial/route.ts` emails the submission to `support@oragon.com.ph` via Resend (reuses `RESEND_API_KEY`), including a paste-ready `Testimonial` object literal.
+- Publishing is manual by design: paste the object into `lib/testimonials.ts`, set `featured`, push. No datastore, no admin. Design spec: `docs/superpowers/specs/2026-06-30-testimonial-submission-design.md`.
 
 ## Tailwind v4 Notes
 - No `tailwind.config.js` — all config is in `globals.css` via `@theme inline`
