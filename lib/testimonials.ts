@@ -4,6 +4,7 @@ export type Testimonial = {
   name: string;
   title: string;
   company: string;
+  featured: boolean;
 };
 
 export const testimonials: Testimonial[] = [
@@ -14,5 +15,6 @@ export const testimonials: Testimonial[] = [
     name: "Veronica Tabrilla",
     title: "Founder & CEO",
     company: "Vero Denim Bags",
+    featured: true,
   },
 ];

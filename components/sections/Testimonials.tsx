@@ -11,6 +11,8 @@ export default function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  const featured = testimonials.filter((t) => t.featured).slice(0, 3);
+
   return (
     <section
       id="testimonials"
@@ -47,11 +49,11 @@ export default function Testimonials() {
           What clients say.
         </motion.h2>
 
-        {/* Cards grid (single testimonial renders as a centered featured card) */}
+        {/* Cards grid (single featured testimonial renders as a centered card) */}
         <div
-          className={testimonials.length === 1 ? undefined : "testimonials-grid"}
+          className={featured.length === 1 ? undefined : "testimonials-grid"}
           style={
-            testimonials.length === 1
+            featured.length === 1
               ? {
                   display: "grid",
                   gridTemplateColumns: "1fr",
@@ -66,7 +68,7 @@ export default function Testimonials() {
                 }
           }
         >
-          {testimonials.map((t, i) => (
+          {featured.map((t, i) => (
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 32, scale: 0.97 }}
@@ -151,6 +153,30 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+
+        {/* Subtle submission link */}
+        <p
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.7rem",
+            letterSpacing: "0.05em",
+            color: "var(--text-muted)",
+            textAlign: "center",
+            marginTop: "2.5rem",
+          }}
+        >
+          <a
+            href="/share-your-experience"
+            style={{
+              color: "var(--text-muted)",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-secondary)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)")}
+          >
+            Worked with Oragon? Share your experience &rarr;
+          </a>
+        </p>
       </div>
 
       <style>{`
